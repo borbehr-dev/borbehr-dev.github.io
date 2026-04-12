@@ -1,258 +1,128 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BORBEHR — FUTURE IS HERE</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Вениамин | borBeHR — разработчик, контент-мейкер, креатив. Специализируюсь на C#, Python, JavaScript. Создаю инновационные проекты и контент.">
-  <meta name="keywords" content="borBeHR, Вениамин, разработчик, программист, C#, Python, JavaScript, контент, креатив, GitLab">
-  <meta name="author" content="Вениамин | borBeHR">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#050505">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.borbehr.eu.org/">
-  <meta property="og:title" content="BORBEHR — FUTURE IS HERE">
-  <meta property="og:description" content="Вениамин | borBeHR — разработчик, контент-мейкер, креатив. Специализируюсь на C#, Python, JavaScript.">
-  <meta property="og:image" content="https://cdn.discordapp.com/avatars/1472288918496870503/421e25be976509128490c2b36ee3ef97.png">
-  <meta property="og:image:alt" content="borBeHR Avatar">
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://www.borbehr.eu.org/">
-  <meta property="twitter:title" content="BORBEHR — FUTURE IS HERE">
-  <meta property="twitter:description" content="Вениамин | borBeHR — разработчик, контент-мейкер, креатив. Специализируюсь на C#, Python, JavaScript.">
-  <meta property="twitter:image" content="https://cdn.discordapp.com/avatars/1472288918496870503/421e25be976509128490c2b36ee3ef97.png">
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://www.borbehr.eu.org/">
-  
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Вениамин | borBeHR",
-    "alternateName": "borBeHR",
-    "url": "https://www.borbehr.eu.org/",
-    "image": "https://cdn.discordapp.com/avatars/1472288918496870503/421e25be976509128490c2b36ee3ef97.png",
-    "description": "Разработчик, контент-мейкер, креатив. Специализируюсь на C#, Python, JavaScript.",
-    "knowsAbout": ["C#", "Python", "JavaScript", "Web Development", "Content Creation"],
-    "sameAs": [
-      "https://gitlab.com/borbehr",
-      "https://t.me/borBeHR",
-      "https://discord.com/users/borbehr",
-      "https://www.youtube.com/@borBeHR",
-      "https://vk.com/veniamingress",
-      "https://guns.lol/borbehr"
-    ],
-    "jobTitle": "Full Stack Developer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Independent"
-    }
-  }
-  </script>
-  
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts: Outfit -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полное обновление | borBeHR</title>
+    <style>
+        :root {
+            --bg-primary: #050505;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #8b5cf6;
+            --text-primary: #ffffff;
+            --text-secondary: #aaa;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .mesh-gradient {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .highlight {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--accent-secondary);
+            border-radius: 12px;
+            color: var(--accent-secondary);
+            font-weight: bold;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .loader {
+            width: 45px;
+            height: 45px;
+            border: 3px solid rgba(255,255,255,0.05);
+            border-radius: 50%;
+            border-top-color: var(--accent-secondary);
+            margin: 25px auto 0;
+            animation: spin 0.8s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <!-- PRELOADER (виден минимум 5 секунд) -->
-  <div id="preloader" class="preloader">
-    <div class="preloader-content">
-      <div class="preloader-logo">
-        <img src="https://cdn.discordapp.com/avatars/1472288918496870503/421e25be976509128490c2b36ee3ef97.png" alt="avatar">
-      </div>
-      <div class="preloader-text">borBeHR Site loading....</div>
-      <div class="preloader-subtext">Please wait....</div>
-    </div>
-  </div>
-
-  <div class="mesh-gradient"></div>
-
-  <!-- Боковое меню (расширенное) -->
-  <nav class="side-menu">
-    <a href="#" class="menu-item" data-tooltip="Главная"><i class="fas fa-home"></i></a>
-    <a href="#projects" class="menu-item" data-tooltip="Проекты"><i class="fas fa-code-branch"></i></a>
-    <a href="#skills" class="menu-item" data-tooltip="Навыки"><i class="fas fa-crown"></i></a>
-    <a href="#contacts" class="menu-item" data-tooltip="Контакты"><i class="fas fa-address-card"></i></a>
-    <!-- Переключатель темы -->
-    <div class="theme-toggle" id="theme-toggle" data-tooltip="Переключить тему">
-      <i class="fas fa-moon" id="theme-icon"></i>
-    </div>
-    <!-- Добавленные пункты -->
-    <a href="https://t.me/borBeHR" target="_blank" class="menu-item" data-tooltip="Telegram"><i class="fab fa-telegram"></i></a>
-    <a href="https://discord.com/users/borbehr" target="_blank" class="menu-item" data-tooltip="Discord"><i class="fab fa-discord"></i></a>
-    <!-- ИСПРАВЛЕНО: ссылка на YouTube обновлена -->
-    <a href="https://www.youtube.com/@borBeHR" target="_blank" class="menu-item" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://vk.com/veniamingress" target="_blank" class="menu-item" data-tooltip="VK"><i class="fab fa-vk"></i></a>
-    <a href="https://guns.lol/borbehr" target="_blank" class="menu-item" data-tooltip="Guns.lol"><i class="fas fa-skull"></i></a>
-    <a href="https://gitlab.com/borbehr" target="_blank" class="menu-item" data-tooltip="GitLab"><i class="fab fa-gitlab"></i></a>
-  </nav>
-
-  <div class="main-wrapper">
+    <div class="mesh-gradient"></div>
+    
     <div class="container">
-      <!-- HERO секция -->
-      <div class="hero-card">
-        <div class="glow"></div>
-        <div class="avatar">
-          <img src="https://cdn.discordapp.com/avatars/1472288918496870503/421e25be976509128490c2b36ee3ef97.png" alt="borBeHR avatar">
-        </div>
-        <h1>Вениамин | borBeHR</h1>
-        <div class="subhead">код · контент · креатив</div>
-
-        <div class="button-group">
-          <a href="https://t.me/borBeHR" target="_blank" class="btn btn-primary">
-            <i class="fab fa-telegram"></i> @borBeHR
-          </a>
-          <a href="https://gitlab.com/borbehr" target="_blank" class="btn btn-outline">
-            <i class="fab fa-gitlab"></i> GitLab
-          </a>
-          <a href="https://guns.lol/borbehr" target="_blank" class="btn btn-outline">
-            <i class="fas fa-crosshairs"></i> guns.lol
-          </a>
-        </div>
-      </div>
-
-      <!-- БЕНТО сетка (контакты и соцсети) -->
-      <div class="bento-grid" id="contacts">
-        <a href="https://t.me/borBeHR" target="_blank" class="bento-item">
-          <i class="fab fa-telegram bento-icon"></i>
-          <div class="bento-label">Telegram</div>
-          <div class="bento-value">@borBeHR</div>
-        </a>
-        <div class="bento-item">
-          <i class="fab fa-discord bento-icon" style="color: #5865f2;"></i>
-          <div class="bento-label">Discord</div>
-          <div class="bento-value">borbehr</div>
-        </div>
-        <a href="https://gitlab.com/borbehr" target="_blank" class="bento-item">
-          <i class="fab fa-gitlab bento-icon"></i>
-          <div class="bento-label">GitLab</div>
-          <div class="bento-value">borbehr</div>
-        </a>
-        <a href="https://t.me/veniamin2014_tg" target="_blank" class="bento-item">
-          <i class="fas fa-paper-plane bento-icon" style="color: #229ed9;"></i>
-          <div class="bento-label">Основной TGK</div>
-          <div class="bento-value">@veniamin2014_tg</div>
-        </a>
-        <a href="https://t.me/notfound404_info" target="_blank" class="bento-item">
-          <i class="fas fa-info-circle bento-icon"></i>
-          <div class="bento-label">Инфо тгк</div>
-          <div class="bento-value">notfound404_info</div>
-        </a>
-        <!-- ИСПРАВЛЕНО: YouTube теперь кликабельный, убрана opacity, добавлен handle -->
-        <a href="https://www.youtube.com/@borBeHR" target="_blank" class="bento-item">
-          <i class="fab fa-youtube bento-icon" style="color: #ff0000;"></i>
-          <div class="bento-label">YouTube</div>
-          <div class="bento-value">@borBeHR</div>
-        </a>
-        <div class="bento-item" style="opacity: 0.6;">
-          <i class="fab fa-tiktok bento-icon"></i>
-          <div class="bento-label">TikTok</div>
-          <div class="bento-value">Скоро</div>
-        </div>
-        <a href="https://vk.com/veniamingress" target="_blank" class="bento-item">
-          <i class="fab fa-vk bento-icon" style="color: #4a76a8;"></i>
-          <div class="bento-label">ВКонтакте</div>
-          <div class="bento-value">редко / Украина</div>
-        </a>
-        <a href="https://guns.lol/borbehr" target="_blank" class="bento-item">
-          <i class="fas fa-skull bento-icon"></i>
-          <div class="bento-label">Guns.lol</div>
-          <div class="bento-value">borbehr</div>
-        </a>
-      </div>
-
-      <!-- ПРОЕКТЫ: репозитории GitHub с кнопкой обновления -->
-      <div style="margin-top: 2.5rem;" id="projects">
-        <div class="projects-header">
-          <div class="projects-header-left">
-            <i class="fas fa-code-branch" style="color: #3b82f6; font-size: 1.8rem;"></i>
-            <h2 style="font-weight: 600; font-size: 1.8rem;">Проекты на GitLab</h2>
-          </div>
-          <button class="refresh-btn" id="refresh-repos"><i class="fas fa-sync-alt"></i> Обновить</button>
-        </div>
-        <div id="repos-container" class="repo-grid">
-          <div class="status-message">
-            <i class="fas fa-spinner fa-pulse"></i> Загружаем репозитории...
-          </div>
-        </div>
-      </div>
-
-      <!-- НАВЫКИ -->
-      <div class="skills-container" id="skills">
-        <div class="skills-title">
-          <i class="fas fa-crown" style="color: #fbbf24;"></i>
-          <span>Мои навыки</span>
-        </div>
-
-        <div class="skill-item">
-          <span class="skill-name">Windows</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:99%"></div></div>
-          <span class="skill-percent">99%</span>
-        </div>
-        <div class="skill-item">
-          <span class="skill-name">C#</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:100%"></div></div>
-          <span class="skill-percent">100%</span>
-        </div>
-        <div class="skill-item">
-          <span class="skill-name">Python</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:100%"></div></div>
-          <span class="skill-percent">100%</span>
-        </div>
-        <div class="skill-item">
-          <span class="skill-name">JavaScript</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:60%"></div></div>
-          <span class="skill-percent">60%</span>
-        </div>
-        <div class="skill-item">
-          <span class="skill-name">Linux</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:20%"></div></div>
-          <span class="skill-percent">20%</span>
-        </div>
-        <div class="skill-item">
-          <span class="skill-name">MySQL</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:60%"></div></div>
-          <span class="skill-percent">60%</span>
-        </div>
-        <div class="skill-item">
-          <span class="skill-name">PHP</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:50%"></div></div>
-          <span class="skill-percent">50%</span>
-        </div>
-      </div>
-
-      <!-- иконки соцсетей -->
-      <div style="display: flex; justify-content: center; gap: 1rem; margin: 2rem 0 1rem;">
-        <!-- ИСПРАВЛЕНО: ссылка на YouTube обновлена -->
-        <a href="https://www.youtube.com/@borBeHR" target="_blank" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; color: white; transition: 0.2s;">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://vk.com/veniamingress" target="_blank" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; color: white; transition: 0.2s;">
-          <i class="fab fa-vk"></i>
-        </a>
-        <a href="https://gitlab.com/borbehr" target="_blank" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; color: white; transition: 0.2s;">
-          <i class="fab fa-gitlab"></i>
-        </a>
-      </div>
-
-      <div class="footer">
-        © 2026 Вениамин | borBeHR — future is here
-      </div>
+        <div class="icon">🚀</div>
+        <h1>Глобальная стройка</h1>
+        <p>
+            Мы решили не просто починить, а <span class="highlight">переписать всё с нуля</span>. 
+            Старый код отправлен на свалку истории.
+        </p>
+        <p>
+            Создаем чистую архитектуру, новый дизайн и запредельную скорость. 
+        </p>
+        
+        <div class="status-badge">Website rebuilding...</div>
+        
+        <div class="loader"></div>
     </div>
-  </div>
-
-  <!-- JavaScript -->
-  <script src="script.js"></script>
 </body>
 </html>
