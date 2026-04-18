@@ -1,10 +1,6 @@
 {
   "tracks": [
     {
-      "file": "Картина_рук_Його.mp3",
-      "title": "[UA] Картина Рук Його",
-      "artist": "borbehr"
-    },    {
       "file": "Кровавый_Bedrock.mp3",
       "title": "Кровавый Bedrock",
       "artist": "borbehr"
@@ -12,6 +8,11 @@
     {
       "file": "ХУЛИГАН - BORBEHR (OFFICIAL AUDIO).mp3", 
       "title": "Хулиган",
+      "artist": "borbehr"
+    },
+    {
+      "file": "Картина_рук_Його.mp3",
+      "title": "[UA] Картина Рук Його",
       "artist": "borbehr"
     }
   ]
