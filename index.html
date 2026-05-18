@@ -3,130 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Домен приостановлен</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body {
-            family: 'Inter', sans-serif;
-            background-color: #1a202c;
-            color: #e2e8f0;
-            animation: background-animate 20s ease-in-out infinite alternate;
-            background: linear-gradient(-45deg, #1a202c, #2d3748, #1e3a5f, #3b82f6);
-            background-size: 400% 400%;
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
+    <title>BORBEHR — FUTURE IS HERE</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Вениамин | borBeHR — разработчик, контент-мейкер, креатив. Специализируюсь на C#, Python, JavaScript. Создаю инновационные проекты и контент.">
+    <meta name="keywords" content="borBeHR, Вениамин, разработчик, программист, C#, Python, JavaScript, контент, креатив, GitLab">
+    <meta name="author" content="Вениамин | borBeHR">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#050505">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://borbehr.eu.org/">
+    <meta property="og:title" content="BORBEHR — FUTURE IS HERE">
+    <meta property="og:description" content="Вениамин | borBeHR — разработчик, контент-мейкер, креатив. Специализируюсь на C#, Python, JavaScript.">
+    <meta property="og:image" content="https://borbehr.eu.org/favicon.png">
+    <meta property="og:image:alt" content="borBeHR Avatar">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://borbehr.eu.org/">
+    <meta property="twitter:title" content="BORBEHR — FUTURE IS HERE">
+    <meta property="twitter:description" content="Вениамин | borBeHR — разработчик, контент-мейкер, креатив. Специализируюсь на C#, Python, JavaScript.">
+    <meta property="twitter:image" content="https://borbehr.eu.org/favicon.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://borbehr.eu.org/">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Вениамин | borBeHR",
+        "alternateName": "borBeHR",
+        "url": "https://borbehr.eu.org/",
+        "image": "https://borbehr.eu.org/favicon.png",
+        "description": "Разработчик, контент-мейкер, креатив. Специализируюсь на C#, Python, JavaScript.",
+        "knowsAbout": ["C#", "Python", "JavaScript", "Web Development", "Content Creation"],
+        "sameAs": [
+            "https://github.com/borbehr-dev",
+            "https://t.me/borBeHR",
+            "https://discord.com/users/borbehr",
+            "https://www.youtube.com/@borBeHR",
+            "https://guns.lol/borbehr"
+        ],
+        "jobTitle": "Full Stack Developer",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Independent"
         }
-        @keyframes background-animate {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .card-container {
-            background-color: rgba(26, 32, 44, 0.7);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 1.5rem;
-            animation: fadeIn 1s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.3s;
-            max-width: 36rem;
-            width: 100%;
-            padding: 2rem;
-            text-align: center;
-        }
-        .card-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        h1 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        .subtitle {
-            font-size: 1.25rem;
-            color: #9ca3af;
-            margin-bottom: 1rem;
-        }
-        .description {
-            color: #d1d5db;
-            font-size: 1.125rem;
-            margin-top: 1rem;
-        }
-        .domain-placeholder {
-            font-weight: 600;
-            background: rgba(59, 130, 246, 0.2);
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            border-radius: 0.5rem;
-            word-break: break-all;
-        }
-        @media (min-width: 768px) {
-            .card-container {
-                padding: 3rem;
-            }
-            h1 {
-                font-size: 2.25rem;
-            }
-            .subtitle {
-                font-size: 1.5rem;
-            }
-        }
-        ul {
-            text-align: left;
-            margin-top: 1rem;
-            padding-left: 1.5rem;
-            color: #d1d5db;
-        }
-        li {
-            margin: 0.5rem 0;
-        }
-        .reason-list {
-            list-style-type: disc;
-            margin-top: 0.5rem;
-        }
-    </style>
+    }
+    </script>
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="card-container">
-    <h1>Домен приостановлен</h1>
-    <div class="subtitle">Данный сайт временно заморожен.</div>
-    <div class="description">
-        <strong>Возможные причины:</strong>
-        <ul class="reason-list">
-            <li>Смена провайдера git-репозитория</li>
-            <li>Технические работы на сайте</li>
-        </ul>
+    <!-- PRELOADER (виден минимум 5 секунд) -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="favicon.png" alt="avatar">
+            </div>
+            <div class="preloader-text">borBeHR Site loading....</div>
+            <div class="preloader-subtext">Please wait....</div>
+        </div>
     </div>
-    <div class="description" style="margin-top: 1.5rem;">
-     <span id="domain-message"></span>
-    </div>
-</div>
 
-<script>
-    (function() {
-        // Получаем текущий домен
-        let currentDomain = window.location.hostname;
-        // Если домен пустой или localhost, покажем заглушку
-        if (!currentDomain || currentDomain === '') {
-            currentDomain = 'Domain not found';
-        }
-        const messageElement = document.getElementById('domain-message');
-        if (messageElement) {
-            messageElement.innerHTML = ` <span class="domain-placeholder">${currentDomain}</span>`;
-        }
-    })();
-</script>
+    <div class="mesh-gradient"></div>
+
+    <button class="menu-toggle-btn" id="menu-toggle-btn" aria-label="Открыть меню">
+        <i class="fas fa-ellipsis-v"></i>
+    </button>
+
+    <!-- Боковое меню (расширенное) -->
+    <nav class="side-menu closed" id="side-menu">
+        <a href="/" class="menu-item" data-tooltip="Главная"><i class="fas fa-home"></i></a>
+        <a href="/projects/" class="menu-item" data-tooltip="Проекты"><i class="fas fa-code-branch"></i></a>
+        <a href="/music/" class="menu-item" data-tooltip="Музыка"><i class="fas fa-music"></i></a>
+        <a href="#contacts" class="menu-item" data-tooltip="Контакты"><i class="fas fa-address-card"></i></a>
+        <!-- Переключатель темы -->
+        <div class="theme-toggle menu-item" id="theme-toggle" data-tooltip="Переключить тему">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </div>
+        <!-- Добавленные пункты -->
+        <a href="https://t.me/borBeHR" target="_blank" class="menu-item" data-tooltip="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://discord.com/users/borbehr" target="_blank" class="menu-item" data-tooltip="Discord"><i class="fab fa-discord"></i></a>
+        <!-- ИСПРАВЛЕНО: ссылка на YouTube обновлена -->
+        <a href="https://www.youtube.com/@borBeHR" target="_blank" class="menu-item" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://guns.lol/borbehr" target="_blank" class="menu-item" data-tooltip="Guns.lol"><i class="fas fa-skull"></i></a>
+        <a href="https://github.com/borbehr-dev" target="_blank" class="menu-item" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="container">
+            <!-- HERO секция -->
+            <div class="hero-card">
+                <div class="glow"></div>
+                <div class="avatar">
+                    <img src="favicon.png" alt="borBeHR avatar">
+                </div>
+                <h1>Вениамин | borBeHR</h1>
+                <div class="subhead">код · контент · креатив</div>
+
+                <div class="button-group">
+                    <a href="/projects/" class="btn btn-primary">
+                        <i class="fas fa-code-branch"></i> Проекты
+                    </a>
+                    <a href="/music/" class="btn btn-outline">
+                        <i class="fas fa-music"></i> Музыка
+                    </a>
+                    <a href="https://github.com/borbehr-dev" target="_blank" class="btn btn-outline">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- БЕНТО сетка (контакты и соцсети) -->
+            <div class="bento-grid" id="contacts">
+                <a href="https://t.me/borBeHR" target="_blank" class="bento-item">
+                    <i class="fab fa-telegram bento-icon"></i>
+                    <div class="bento-label">Telegram</div>
+                    <div class="bento-value">@borBeHR</div>
+                </a>
+                <a href="https://discord.com/users/borbehr" target="_blank" class="bento-item">
+                    <i class="fab fa-discord bento-icon" style="color: #5865f2;"></i>
+                    <div class="bento-label">Discord</div>
+                    <div class="bento-value">borbehr</div>
+                </a>
+                <a href="https://github.com/borbehr-dev" target="_blank" class="bento-item">
+                    <i class="fab fa-github bento-icon"></i>
+                    <div class="bento-label">GitHub</div>
+                    <div class="bento-value">borbehr-dev</div>
+                </a>
+                <a href="https://t.me/veniamin2014_tg" target="_blank" class="bento-item">
+                    <i class="fas fa-paper-plane bento-icon" style="color: #229ed9;"></i>
+                    <div class="bento-label">Основной TGK</div>
+                    <div class="bento-value">@veniamin2014_tg</div>
+                </a>
+                <a href="https://t.me/notfound404_info" target="_blank" class="bento-item">
+                    <i class="fas fa-info-circle bento-icon"></i>
+                    <div class="bento-label">Инфо тгк</div>
+                    <div class="bento-value">notfound404_info</div>
+                </a>
+                <!-- ИСПРАВЛЕНО: YouTube теперь кликабельный, убрана opacity, добавлен handle -->
+                <a href="https://www.youtube.com/@borBeHR" target="_blank" class="bento-item">
+                    <i class="fab fa-youtube bento-icon" style="color: #ff0000;"></i>
+                    <div class="bento-label">YouTube</div>
+                    <div class="bento-value">@borBeHR</div>
+                </a>
+                <a href="#" class="bento-item" style="opacity: 0.6;">
+                    <i class="fab fa-tiktok bento-icon"></i>
+                    <div class="bento-label">TikTok</div>
+                    <div class="bento-value">Скоро</div>
+                </a>
+                <a href="https://guns.lol/borbehr" target="_blank" class="bento-item">
+                    <i class="fas fa-skull bento-icon"></i>
+                    <div class="bento-label">Guns.lol</div>
+                    <div class="bento-value">borbehr</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            © 2026 Вениамин | borBeHR — future is here
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
