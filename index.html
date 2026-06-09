@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
-    <title>500 Internal Server Error</title>
+    <title>borBeHR Ukraine - Final</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -20,7 +20,7 @@
         body {
             background-color: #000;
             color: #fff;
-            font-family: 'Share Tech Mono', 'Archivo', monospace;
+            font-family: 'Share Tech Mono', monospace;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -29,18 +29,18 @@
             position: relative;
         }
 
-        /* Эффект шума на заднем фоне */
+        /* Эффект шума/CRT на заднем фоне */
         body::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.06));
             background-size: 100% 4px, 6px 100%;
             z-index: 2;
             pointer-events: none;
         }
 
-        .error-container {
+        .container {
             text-align: center;
             padding: 2rem;
             z-index: 5;
@@ -48,21 +48,21 @@
             width: 100%;
         }
 
-        .error-code {
-            font-size: 6rem;
+        .status-title {
+            font-size: 2rem;
             font-weight: 700;
             color: #ff3333;
             text-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
             animation: pulse 2s infinite alternate;
         }
 
-        .error-title {
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .sub-title {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
             margin-bottom: 1.5rem;
-            color: #e0e0e0;
+            color: #888;
         }
 
         .divider {
@@ -72,11 +72,23 @@
             box-shadow: 0 0 8px #ff3333;
         }
 
-        .error-message {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #a0a0a0;
-            white-space: pre-line;
+        /* Стилизация аудиоплеера под тему */
+        .player-wrapper {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+            filter: invert(1) hue-rotate(180deg); /* Инверсия цветов, чтобы плеер стал темным */
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        audio:hover {
+            opacity: 1;
         }
 
         .tech-details {
@@ -87,7 +99,6 @@
             letter-spacing: 1px;
         }
 
-        /* Анимация пульсации для кода ошибки */
         @keyframes pulse {
             0% {
                 transform: scale(1);
@@ -103,25 +114,27 @@
 </head>
 <body>
 
-    <div class="error-container">
-        <div class="error-code">500</div>
-        <div class="error-title">Internal Server Error</div>
+    <div class="container">
+        <div class="status-title">borBeHR Ukraine end.</div>
+        <div class="sub-title">Final Ukraine Track:</div>
         
         <div class="divider"></div>
         
-        <div class="error-message">
-            Technical Work for borbehr.eu.org site
+        <div class="player-wrapper">
+            <audio controls>
+                <source src="Затишье,перед бурей.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </div>
 
         <div class="tech-details" id="timestamp"></div>
     </div>
 
     <script>
-        // Небольшой скрипт для вывода реального времени ошибки (добавляет атмосферы хакерского/сломанного терминала)
         function updateTimestamp() {
             const now = new Date();
             const dateStr = now.toISOString().replace('T', ' ').substring(0, 19);
-            document.getElementById('timestamp').textContent = `CRITICAL_ERR_LOG // ${dateStr} // GMT`;
+            document.getElementById('timestamp').textContent = `SYSTEM_OFFLINE // ${dateStr} // GMT`;
         }
         updateTimestamp();
     </script>
