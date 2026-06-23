@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#000000">
-    <title>borBeHR Ukraine - Final</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
+    <title>TERMINAL // MAINTENANCE</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -18,125 +14,161 @@
         }
 
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Share Tech Mono', monospace;
-            min-height: 100vh;
+            background: #000;
+            color: #00ff41;
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+            line-height: 1.4;
+            overflow: hidden;
+            height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+        }
+
+        .terminal {
+            width: 100%;
+            max-width: 920px;
+            height: 100vh;
+            background: #000;
+            border: 4px solid #00ff41;
+            box-shadow: 0 0 40px #00ff41;
+            padding: 20px;
             overflow: hidden;
             position: relative;
         }
 
-        /* Эффект шума/CRT на заднем фоне */
-        body::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.06));
-            background-size: 100% 4px, 6px 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .container {
+        .header {
             text-align: center;
-            padding: 2rem;
-            z-index: 5;
-            max-width: 600px;
+            margin-bottom: 20px;
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+        }
+
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 65, 0.03) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            animation: scan 4s linear infinite;
+            z-index: 1;
         }
 
-        .status-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ff3333;
-            text-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
-            animation: pulse 2s infinite alternate;
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
 
-        .sub-title {
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            color: #888;
+        .content {
+            height: calc(100vh - 160px);
+            overflow-y: auto;
+            padding-right: 20px;
+            position: relative;
+            z-index: 2;
         }
 
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ff3333, transparent);
-            margin: 1.5rem 0;
-            box-shadow: 0 0 8px #ff3333;
+        .line {
+            margin-bottom: 8px;
+            white-space: pre-wrap;
         }
 
-        /* Стилизация аудиоплеера под тему */
-        .player-wrapper {
-            margin: 2rem 0;
-            display: flex;
-            justify-content: center;
+        .blink {
+            animation: blink 0.8s step-end infinite;
         }
 
-        audio {
-            width: 100%;
-            max-width: 400px;
-            filter: invert(1) hue-rotate(180deg); /* Инверсия цветов, чтобы плеер стал темным */
-            opacity: 0.8;
-            transition: opacity 0.3s;
+        @keyframes blink {
+            50% { opacity: 0; }
         }
 
-        audio:hover {
-            opacity: 1;
-        }
-
-        .tech-details {
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            color: #444;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.9;
-            }
-            100% {
-                transform: scale(1.02);
-                opacity: 1;
-                text-shadow: 0 0 25px rgba(255, 51, 51, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
-            }
-        }
+        .green { color: #00ff41; }
+        .yellow { color: #ffff00; }
+        .red { color: #ff4444; }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <div class="status-title">borBeHR Ukraine end.</div>
-        <div class="sub-title">Final Ukraine Track:</div>
+    <div class="terminal">
+        <div class="scan-line"></div>
         
-        <div class="divider"></div>
-        
-        <div class="player-wrapper">
-            <audio controls>
-                <source src="Затишье,перед бурей.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+        <div class="header">
+            ██████╗ TERMINAL v0.8.4 — DEUTSCHLAND INFRASTRUCTURE
         </div>
 
-        <div class="tech-details" id="timestamp"></div>
+        <div class="content" id="content"></div>
+
+        <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; color: #00aa33; font-size: 16px;">
+            root@maintenance-de:\~# <span class="blink">_</span>
+        </div>
     </div>
 
     <script>
-        function updateTimestamp() {
-            const now = new Date();
-            const dateStr = now.toISOString().replace('T', ' ').substring(0, 19);
-            document.getElementById('timestamp').textContent = `SYSTEM_OFFLINE // 17.06.2026  FINAL UKRAINE COMMIT | 18.06.2026 ВЫЕЗД`;
+        const content = document.getElementById('content');
+        
+        // Автоматически берём домен
+        let domain = window.location.hostname || "Created by borBeHR.eu.org";
+
+        function typeText(text, element, speed = 30, callback) {
+            let i = 0;
+            element.textContent = '';
+            const interval = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    if (callback) callback();
+                }
+            }, speed);
         }
-        updateTimestamp();
+
+        function addLine(text, className = '') {
+            const line = document.createElement('div');
+            line.className = `line ${className}`;
+            line.textContent = text;
+            content.appendChild(line);
+            content.scrollTop = content.scrollHeight;
+            return line;
+        }
+
+        function startTerminal() {
+            addLine(`[INFO] Подключение к серверу...`, 'green');
+            
+            setTimeout(() => {
+                const searchLine = addLine('');
+                typeText(`Поиск сайта ${domain}...`, searchLine, 40, () => {
+                    
+                    addLine('Проверка DNS-записи... ✓', 'green');
+                    
+                    setTimeout(() => {
+                        addLine('Проверка SSL-сертификата... ✓', 'green');
+                        addLine('Проверка сервера... ✓', 'green');
+                        
+                        setTimeout(() => {
+                            addLine('');
+                            const status = addLine('');
+                            typeText('Статус: НА ТЕХНИЧЕСКИХ РАБОТАХ', status, 50, () => {
+                                addLine('');
+                                addLine('Сайт на технических работах в Германии.', 'yellow');
+                                addLine('Bitte versuchen Sie es später erneut.', 'yellow');
+                                addLine('Пожалуйста, проверьте позже.', 'yellow');
+                                addLine('');
+                                addLine('═══════════════════════════════════════', 'green');
+                                addLine('Примерное время восстановления: не указано', 'red');
+                                addLine('Регион: Germany | Дополнительная информация не указана', 'green');
+                                addLine(`Домен: ${domain}`, 'green');
+                                addLine('');
+                                addLine('[SYSTEM] t.me/borbehr', 'green');
+                            });
+                        }, 800);
+                    }, 600);
+                });
+            }, 400);
+        }
+
+        window.onload = startTerminal;
     </script>
 </body>
 </html>
