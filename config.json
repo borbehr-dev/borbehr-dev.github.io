@@ -1,0 +1,22 @@
+{
+    "profile": {
+    "avatar": "https://borbehr.eu.org/favicon.ico",
+    "username": "borBeHR",
+    "bio": "✨ Дизайнер • Разработчик • Люблю эстетику",
+    "backgroundUrl": "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&q=80",
+    "badge": {
+    "iconUrl": "https://img.icons8.com/?size=100&id=86727&format=png&color=000000",
+    "tooltip": "Owner"
+   }
+},
+   "socials": [
+    { "name": "Discord", "url": "https://discord.com/users/1472288918496870503", "icon": "fab fa-discord" },
+    { "name": "Telegram", "url": "https://t.me/borBeHR", "icon": "fab fa-telegram" },
+    { "name": "GitHub", "url": "https://github.com/borbehr-dev", "icon": "fab fa-github" },
+    { "name": "Steam", "url": "https://steamcommunity.com/id/borbehr/", "icon": "fab fa-steam" },
+    { "name": "Old Site", "url": "https://old.borbehr.eu.org", "icon": "fa-solid fa-web-awesome" }
+  ],
+  "music": {
+  "audioUrl": "https://files.catbox.moe/4huuog.mp3"
+  }
+ }

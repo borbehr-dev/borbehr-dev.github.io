@@ -1,142 +1,234 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#000000">
-    <title>borBeHR Ukraine - Final</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" id="meta-theme" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
+        /* ----- Reset ----- */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #000;
+            background: #09090b;
             color: #fff;
-            font-family: 'Share Tech Mono', monospace;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
             overflow: hidden;
             position: relative;
         }
 
-        /* Эффект шума/CRT на заднем фоне */
-        body::before {
-            content: "";
+        /* ----- Задний фон ----- */
+        .bg-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.06));
-            background-size: 100% 4px, 6px 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            filter: blur(4px);
+            z-index: 1;
+        }
+
+        .background-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(192, 38, 211, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 2;
-            pointer-events: none;
+            filter: blur(60px);
         }
 
-        .container {
-            text-align: center;
-            padding: 2rem;
-            z-index: 5;
-            max-width: 600px;
+        /* ----- Экран входа ----- */
+        #enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-        }
-
-        .status-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ff3333;
-            text-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
-            animation: pulse 2s infinite alternate;
-        }
-
-        .sub-title {
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            color: #888;
-        }
-
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ff3333, transparent);
-            margin: 1.5rem 0;
-            box-shadow: 0 0 8px #ff3333;
-        }
-
-        /* Стилизация аудиоплеера под тему */
-        .player-wrapper {
-            margin: 2rem 0;
+            height: 100%;
+            background: #050507;
+            z-index: 999;
             display: flex;
             justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.5s ease;
+        }
+        #enter-screen:hover {
+            color: #c026d3;
+            text-shadow: 0 0 15px #c026d3;
         }
 
-        audio {
-            width: 100%;
-            max-width: 400px;
-            filter: invert(1) hue-rotate(180deg); /* Инверсия цветов, чтобы плеер стал темным */
-            opacity: 0.8;
-            transition: opacity 0.3s;
+        /* ----- Карточка профиля ----- */
+        .card {
+            background: rgba(10, 10, 12, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(192, 38, 211, 0.25);
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            width: 380px;
+            text-align: center;
+            z-index: 10;
+            box-shadow: 0 0 50px rgba(192, 38, 211, 0.15);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
-        audio:hover {
+        .card.loaded {
+            transform: scale(1);
             opacity: 1;
         }
 
-        .tech-details {
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            color: #444;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid #c026d3;
+            box-shadow: 0 0 25px rgba(192, 38, 211, 0.5);
+            object-fit: cover;
+            margin-bottom: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        .avatar:hover {
+            transform: rotate(5deg) scale(1.05);
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.9;
-            }
-            100% {
-                transform: scale(1.02);
-                opacity: 1;
-                text-shadow: 0 0 25px rgba(255, 51, 51, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
-            }
+        .username-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 0.6rem;
+        }
+
+        .username {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* ----- Бейдж и тултип (оригинальные стили) ----- */
+        .crown-wrapper {
+            position: relative;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+        .crown-wrapper img {
+            width: 16px;
+            height: 16px;
+            filter: invert(1);
+        }
+
+        .crown-tooltip {
+            position: absolute;
+            bottom: 140%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            pointer-events: none;
+        }
+        .crown-wrapper:hover .crown-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .bio {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        /* ----- Социальные кнопки ----- */
+        .socials-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 1.4rem;
+            text-decoration: none;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .social-btn:hover {
+            background: rgba(192, 38, 211, 0.2);
+            border-color: #c026d3;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(192, 38, 211, 0.4);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="status-title">borBeHR Ukraine end.</div>
-        <div class="sub-title">Final Ukraine Track:</div>
-        
-        <div class="divider"></div>
-        
-        <div class="player-wrapper">
-            <audio controls>
-                <source src="Затишье,перед бурей.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
+    <div id="enter-screen">[ click to enter ]</div>
+    <div id="bg-overlay" class="bg-overlay"></div>
+    <div class="background-glow"></div>
 
-        <div class="tech-details" id="timestamp"></div>
+    <div class="card" id="profile-card">
+        <img id="avatar" class="avatar" src="" alt="Avatar" />
+        <div class="username-wrapper">
+            <h1 id="username" class="username"></h1>
+            <div class="crown-wrapper" id="badge-wrapper" style="display: none;">
+                <img src="" id="badge-icon" alt="Badge" />
+                <div class="crown-tooltip" id="badge-tooltip"></div>
+            </div>
+        </div>
+        <p id="bio" class="bio"></p>
+        <div id="socials" class="socials-container"></div>
     </div>
 
-    <script>
-        function updateTimestamp() {
-            const now = new Date();
-            const dateStr = now.toISOString().replace('T', ' ').substring(0, 19);
-            document.getElementById('timestamp').textContent = `SYSTEM_OFFLINE // 17.06.2026  FINAL UKRAINE COMMIT | 18.06.2026 ВЫЕЗД`;
-        }
-        updateTimestamp();
-    </script>
+    <audio id="bg-music" loop></audio>
+
+    <script src="app.js"></script>
 </body>
 </html>
