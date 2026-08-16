@@ -1,0 +1,19 @@
+# Переименуй этот файл в projects.yml, чтобы задать проекты вручную.
+# Если оставить список projects пустым (или удалить файл вообще) —
+# сайт при загрузке в браузере сам подтянет публичные репозитории
+# указанного github_user через GitHub API и пометит их как "с GitHub".
+
+github_user: borbehr-dev
+
+projects:
+  - title: GitLab Manager
+    desc: Android-приложение для управления GitLab, PKCE OAuth, Kotlin
+    link: "https://github.com/borbehr-dev/gitlabmanager"
+    repo: "borbehr-dev/gitlabmanager"
+
+  - title: TodoList
+    desc: Простое todo-приложение под Android
+    link: "https://github.com/borbehr-dev/TodoList"
+    repo: "borbehr-dev/TodoList"
+
+# projects: []   ← так включится авто-фетч с GitHub
