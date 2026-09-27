@@ -1,0 +1,27 @@
+{{define "content"}}
+<section class="contents">
+  <h2 class="section-label">Проекты {{if .HasManual}}<span class="sub">— заявлено вручную</span>{{else}}<span class="sub">— живая выгрузка с GitHub</span>{{end}}</h2>
+
+  {{if .HasManual}}
+    <ul class="label-list" id="project-list">
+      {{range .Projects}}
+      <li class="label-row">
+        <div class="label-barcode" aria-hidden="true"></div>
+        <div class="label-body">
+          <div class="label-top">
+            <a class="label-title" href="{{.Link}}" target="_blank" rel="noopener">{{.Title}}</a>
+            <span class="tag tag-manual">manual</span>
+          </div>
+          <p class="label-desc">{{.Desc}}</p>
+        </div>
+      </li>
+      {{end}}
+    </ul>
+  {{else}}
+    <p class="fetch-note" id="fetch-status">запрашиваю содержимое у api.github.com<span class="loading-dots"></span></p>
+    <ul class="label-list" id="project-list" data-github-user="{{.GithubUser}}">
+      <!-- заполняется github-fetch.js -->
+    </ul>
+  {{end}}
+</section>
+{{end}}

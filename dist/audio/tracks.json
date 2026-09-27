@@ -1,30 +1,34 @@
 [
   {
     "title": "Viper",
-    "src": "audio/Viper.mp3"
+    "src": "/audio/Viper.mp3"
   },
   {
     "title": "Картина рук Його",
-    "src": "audio/Картина_рук_Його.mp3"
+    "src": "/audio/Картина_рук_Його.mp3"
   },
   {
     "title": "Кровавый Bedrock",
-    "src": "audio/Кровавый_Bedrock.mp3"
+    "src": "/audio/Кровавый_Bedrock.mp3"
   },
   {
     "title": "Мой голос — закон",
-    "src": "audio/Мой голос — закон.mp3"
+    "src": "/audio/Мой голос — закон.mp3"
   },
   {
     "title": "Свой Закон (V2)",
-    "src": "audio/Свой Закон (V2).mp3"
+    "src": "/audio/Свой Закон (V2).mp3"
   },
   {
     "title": "Хулиган by borBeHR",
-    "src": "audio/Хулиган by borBeHR.mp3"
+    "src": "/audio/Хулиган by borBeHR.mp3"
   },
   {
     "title": "Эх ВПНы Верные",
-    "src": "audio/Эх ВПНы Верные.mp3"
+    "src": "/audio/Эх ВПНы Верные.mp3"
+  },
+  {
+    "title": "минт на максимум",
+    "src": "/audio/минт на максимум.mp3"
   }
 ]

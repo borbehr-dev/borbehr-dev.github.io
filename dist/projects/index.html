@@ -1,10 +1,10 @@
-{{define "layout"}}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{.Title}}</title>
+<title>projects — borBeHR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,24 +21,34 @@
     <span class="manifest-no">MANIFEST&nbsp;№&nbsp;borBeHR‑01</span>
   </div>
   <nav class="masthead-nav">
-    <a href="/"{{if eq .Page "home"}} class="active"{{end}}>home</a>
-    <a href="/audio/"{{if eq .Page "audio"}} class="active"{{end}}>audio</a>
-    <a href="/projects/"{{if eq .Page "projects"}} class="active"{{end}}>projects</a>
-    <a href="{{.TelegramLink}}" target="_blank" rel="noopener">telegram ↗</a>
+    <a href="/">home</a>
+    <a href="/audio/">audio</a>
+    <a href="/projects/" class="active">projects</a>
+    <a href="https://t.me/venbehr" target="_blank" rel="noopener">telegram ↗</a>
   </nav>
 </header>
 
 <main>
-{{template "content" .}}
+
+<section class="contents">
+  <h2 class="section-label">Проекты <span class="sub">— живая выгрузка с GitHub</span></h2>
+
+  
+    <p class="fetch-note" id="fetch-status">запрашиваю содержимое у api.github.com<span class="loading-dots"></span></p>
+    <ul class="label-list" id="project-list" data-github-user="borbehr-dev">
+      
+    </ul>
+  
+</section>
+
 </main>
 
 <footer class="footer">
   <div class="tear-line" aria-hidden="true"></div>
-  <span class="footer-text">упаковано и отправлено — go build · {{.Title}}</span>
+  <span class="footer-text">упаковано и отправлено — go build · projects — borBeHR</span>
 </footer>
 
 <script src="/player.js"></script>
 <script src="/github-fetch.js"></script>
 </body>
 </html>
-{{end}}

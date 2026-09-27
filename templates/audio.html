@@ -1,0 +1,21 @@
+{{define "content"}}
+<section class="audio-section">
+  <h2 class="section-label">Сопроводительный звук</h2>
+  <div class="player" id="player">
+    <button class="play-btn" id="playBtn" aria-label="Воспроизвести">
+      <svg id="iconPlay" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="iconPause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+    <div class="player-info">
+      <div class="track-name" id="trackName">трек не выбран</div>
+      <div class="waveform" id="waveform" aria-hidden="true"></div>
+    </div>
+    <span class="time" id="timeDisplay">0:00</span>
+    <div class="player-nav">
+      <button class="nav-btn" id="prevBtn" aria-label="Предыдущий трек">‹</button>
+      <button class="nav-btn" id="nextBtn" aria-label="Следующий трек">›</button>
+    </div>
+  </div>
+  <ul class="tracklist" id="tracklist"></ul>
+</section>
+{{end}}

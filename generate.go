@@ -29,13 +29,16 @@ type Config struct {
 
 // PageData — то, что уходит в шаблон
 type PageData struct {
-	Title       string
-	GithubUser  string
-	HasManual   bool // true = проекты заданы руками, JS-фетч не нужен
-	Projects    []Project
+	Title        string
+	Page         string // "home" | "audio" | "projects" — для подсветки активного пункта меню
+	GithubUser   string
+	HasManual    bool // true = проекты заданы руками, JS-фетч не нужен
+	Projects     []Project
+	TelegramLink string
 }
 
 const projectsFile = "projects.yml"
+const telegramLink = "https://t.me/venbehr"
 
 func loadConfig() Config {
 	cfg := Config{GithubUser: "borbehr-dev"} // дефолт, если файла нет вообще
@@ -58,25 +61,14 @@ func loadConfig() Config {
 	return cfg
 }
 
-func main() {
-	os.RemoveAll("dist")
-	os.MkdirAll("dist", 0755)
-
-	cfg := loadConfig()
-
-	data := PageData{
-		Title:      "borBeHR — portfolio",
-		GithubUser: cfg.GithubUser,
-		HasManual:  len(cfg.Projects) > 0,
-		Projects:   cfg.Projects,
-	}
-
+func renderPage(contentTemplate, outPath string, data PageData) {
 	tmpl := template.Must(template.ParseFiles(
 		"templates/layout.html",
-		"templates/index.html",
+		contentTemplate,
 	))
 
-	f, err := os.Create("dist/index.html")
+	os.MkdirAll(filepath.Dir(outPath), 0755)
+	f, err := os.Create(outPath)
 	if err != nil {
 		panic(err)
 	}
@@ -85,6 +77,36 @@ func main() {
 	if err := tmpl.ExecuteTemplate(f, "layout", data); err != nil {
 		panic(err)
 	}
+}
+
+func main() {
+	os.RemoveAll("dist")
+	os.MkdirAll("dist", 0755)
+
+	cfg := loadConfig()
+
+	base := PageData{
+		Title:        "borBeHR — portfolio",
+		GithubUser:   cfg.GithubUser,
+		HasManual:    len(cfg.Projects) > 0,
+		Projects:     cfg.Projects,
+		TelegramLink: telegramLink,
+	}
+
+	home := base
+	home.Page = "home"
+	home.Title = "borBeHR — portfolio"
+	renderPage("templates/home.html", "dist/index.html", home)
+
+	audio := base
+	audio.Page = "audio"
+	audio.Title = "audio — borBeHR"
+	renderPage("templates/audio.html", "dist/audio/index.html", audio)
+
+	projects := base
+	projects.Page = "projects"
+	projects.Title = "projects — borBeHR"
+	renderPage("templates/projects.html", "dist/projects/index.html", projects)
 
 	copyStatic("static", "dist")
 	generateTracklist("static/audio", "dist/audio/tracks.json")
@@ -137,7 +159,7 @@ func generateTracklist(audioDir, outPath string) {
 	for _, n := range names {
 		tracks = append(tracks, Track{
 			Title: titleFromFilename(n),
-			Src:   "audio/" + n,
+			Src:   "/audio/" + n,
 		})
 	}
 

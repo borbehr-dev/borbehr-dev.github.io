@@ -50,6 +50,32 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--stamp); outline-of
 .masthead-nav{margin-left:auto; display:flex; gap:1.4rem; font-family:var(--font-data); font-size:.8rem;}
 .masthead-nav a{color:var(--ink-dim);}
 .masthead-nav a:hover{color:var(--stamp);}
+.masthead-nav a.active{color:var(--ink);}
+
+/* Уведомление об удалённых каналах */
+.notice-block{
+  margin-top:1.6rem; padding:1rem 1.1rem;
+  background:var(--paper-raised); border:1px solid var(--stamp); border-radius:2px;
+}
+.notice-text{
+  margin:0; font-family:var(--font-data); font-weight:600; color:var(--stamp);
+  text-transform:uppercase; letter-spacing:.02em; font-size:.95rem;
+}
+.notice-sub{margin:.5rem 0 0; font-size:.9rem; color:var(--ink-dim);}
+.notice-sub a{color:var(--olive); text-decoration-color:var(--olive);}
+
+/* CTA-кнопки на главной */
+.cta-row{display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap;}
+.cta-btn{
+  display:flex; align-items:center; gap:.7rem;
+  padding:.9rem 1.3rem; flex:1; min-width:160px;
+  background:var(--paper-raised); border:1px solid var(--ink); border-radius:2px;
+  font-family:var(--font-data); text-decoration:none; color:var(--ink);
+  transition:border-color .15s ease, color .15s ease;
+}
+.cta-btn:hover{border-color:var(--stamp); color:var(--stamp);}
+.cta-key{color:var(--ink-dim); font-size:.8rem;}
+.cta-label{font-weight:600; text-transform:uppercase; letter-spacing:.03em;}
 
 main{max-width:700px; margin:0 auto; padding:3rem 1.5rem 2rem; position:relative; z-index:1;}
 

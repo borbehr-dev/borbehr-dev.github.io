@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>borBeHR — portfolio</title>
+<title>audio — borBeHR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,8 +21,8 @@
     <span class="manifest-no">MANIFEST&nbsp;№&nbsp;borBeHR‑01</span>
   </div>
   <nav class="masthead-nav">
-    <a href="/" class="active">home</a>
-    <a href="/audio/">audio</a>
+    <a href="/">home</a>
+    <a href="/audio/" class="active">audio</a>
     <a href="/projects/">projects</a>
     <a href="https://t.me/venbehr" target="_blank" rel="noopener">telegram ↗</a>
   </nav>
@@ -30,32 +30,31 @@
 
 <main>
 
-<section class="cover">
-  <p class="cover-eyebrow">Declaration of origin</p>
-  <h1 class="cover-name">borBeHR</h1>
-
-  <div class="notice-block">
-    <p class="notice-text">Все каналы в Telegram удалены.</p>
-    <p class="notice-sub">Связь — <a href="https://t.me/venbehr" target="_blank" rel="noopener">https://t.me/venbehr</a></p>
+<section class="audio-section">
+  <h2 class="section-label">Сопроводительный звук</h2>
+  <div class="player" id="player">
+    <button class="play-btn" id="playBtn" aria-label="Воспроизвести">
+      <svg id="iconPlay" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="iconPause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+    <div class="player-info">
+      <div class="track-name" id="trackName">трек не выбран</div>
+      <div class="waveform" id="waveform" aria-hidden="true"></div>
+    </div>
+    <span class="time" id="timeDisplay">0:00</span>
+    <div class="player-nav">
+      <button class="nav-btn" id="prevBtn" aria-label="Предыдущий трек">‹</button>
+      <button class="nav-btn" id="nextBtn" aria-label="Следующий трек">›</button>
+    </div>
   </div>
-
-  <div class="cta-row">
-    <a class="cta-btn" href="/audio/">
-      <span class="cta-key">01</span>
-      <span class="cta-label">audio</span>
-    </a>
-    <a class="cta-btn" href="/projects/">
-      <span class="cta-key">02</span>
-      <span class="cta-label">projects</span>
-    </a>
-  </div>
+  <ul class="tracklist" id="tracklist"></ul>
 </section>
 
 </main>
 
 <footer class="footer">
   <div class="tear-line" aria-hidden="true"></div>
-  <span class="footer-text">упаковано и отправлено — go build · borBeHR — portfolio</span>
+  <span class="footer-text">упаковано и отправлено — go build · audio — borBeHR</span>
 </footer>
 
 <script src="/player.js"></script>

@@ -68,7 +68,7 @@
     highlightActive();
   }
 
-  fetch('audio/tracks.json')
+  fetch('/audio/tracks.json')
     .then((res) => (res.ok ? res.json() : []))
     .then((tracks) => {
       TRACKS = tracks || [];
