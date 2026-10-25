@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -12,6 +11,28 @@
 </head>
 <body>
 <div class="texture"></div>
+
+
+<div class="alert-stack" id="alertStack">
+  
+  <div class="alert-banner" data-alert-id="1">
+    <span class="alert-text">
+      Вышел новый проект! Обязательно посмотрите!
+      <a href="https://github.com/borbehr-dev/vibe-bio" target="_blank" rel="noopener">смотреть ↗</a>
+    </span>
+    <button class="alert-close" data-alert-id="1" aria-label="Закрыть">×</button>
+  </div>
+  
+  <div class="alert-banner" data-alert-id="2">
+    <span class="alert-text">
+      Демо vibe-bio
+      <a href="https://borbehr-vibebio.pages.dev" target="_blank" rel="noopener">смотреть ↗</a>
+    </span>
+    <button class="alert-close" data-alert-id="2" aria-label="Закрыть">×</button>
+  </div>
+  
+</div>
+
 
 <header class="masthead">
   <div class="stamp-mark" aria-hidden="true">
@@ -29,14 +50,13 @@
 </header>
 
 <main>
-
 <section class="contents">
   <h2 class="section-label">Проекты <span class="sub">— живая выгрузка с GitHub</span></h2>
 
   
     <p class="fetch-note" id="fetch-status">запрашиваю содержимое у api.github.com<span class="loading-dots"></span></p>
     <ul class="label-list" id="project-list" data-github-user="borbehr-dev">
-      
+      <!-- заполняется github-fetch.js -->
     </ul>
   
 </section>
@@ -45,9 +65,10 @@
 
 <footer class="footer">
   <div class="tear-line" aria-hidden="true"></div>
-  <span class="footer-text">упаковано и отправлено — go build · projects — borBeHR</span>
+  <span class="footer-text">упаковано и отправлено — node generate.js · projects — borBeHR</span>
 </footer>
 
+<script src="/alerts.js"></script>
 <script src="/player.js"></script>
 <script src="/github-fetch.js"></script>
 </body>

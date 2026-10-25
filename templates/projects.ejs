@@ -1,0 +1,25 @@
+<section class="contents">
+  <h2 class="section-label">Проекты <% if (hasManual) { %><span class="sub">— заявлено вручную</span><% } else { %><span class="sub">— живая выгрузка с GitHub</span><% } %></h2>
+
+  <% if (hasManual) { %>
+    <ul class="label-list" id="project-list">
+      <% projects.forEach(function(p) { %>
+      <li class="label-row">
+        <div class="label-barcode" aria-hidden="true"></div>
+        <div class="label-body">
+          <div class="label-top">
+            <a class="label-title" href="<%= p.link %>" target="_blank" rel="noopener"><%= p.title %></a>
+            <span class="tag tag-manual">manual</span>
+          </div>
+          <p class="label-desc"><%= p.desc %></p>
+        </div>
+      </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p class="fetch-note" id="fetch-status">запрашиваю содержимое у api.github.com<span class="loading-dots"></span></p>
+    <ul class="label-list" id="project-list" data-github-user="<%= githubUser %>">
+      <!-- заполняется github-fetch.js -->
+    </ul>
+  <% } %>
+</section>

@@ -203,3 +203,44 @@ main{max-width:700px; margin:0 auto; padding:3rem 1.5rem 2rem; position:relative
   .manifest-no{order:3; width:100%; margin-top:.4rem;}
   main{padding:2.2rem 1rem 1.5rem;}
 }
+
+/* --- alerts (Node.js rewrite addition) --- */
+.alert-stack {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 20;
+}
+.alert-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background: #1e2327;
+  color: #f4f1ea;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.15);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+}
+.alert-banner .alert-text a {
+  color: inherit;
+  text-decoration: underline;
+  margin-left: 0.5em;
+}
+.alert-banner .alert-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  opacity: 0.7;
+}
+.alert-banner .alert-close:hover {
+  opacity: 1;
+}
+.alert-banner.alert-hidden {
+  display: none;
+}

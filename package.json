@@ -1,0 +1,16 @@
+{
+  "name": "borbehr-portfolio",
+  "version": "1.0.0",
+  "description": "Статический генератор сайта borbehr.eu.org (Node.js version, единый config.yaml)",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "node generate.js",
+    "serve": "node serve.js",
+    "start": "npm run build && npm run serve"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "js-yaml": "^4.1.0"
+  }
+}

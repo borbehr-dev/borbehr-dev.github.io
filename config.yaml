@@ -1,0 +1,21 @@
+# Единый конфиг сайта. Раньше было go.mod + projects.yml — теперь всё тут.
+
+site:
+  title: "borBeHR — portfolio"
+  telegram_link: "https://t.me/venbehr"
+  # github_user используется только если список projects ниже пустой —
+  # тогда сайт сам подтянет публичные репозитории через GitHub API прямо в браузере.
+  github_user: "borbehr-dev"
+
+# Если оставить projects пустым ([]) — включится авто-фетч с GitHub (см. github_user выше).
+projects: []
+# Закрываемые алерты-баннеры наверху сайта.
+# Ключ (1, 2, 3...) — это id, по нему баннер запоминается закрытым в localStorage у посетителя.
+# link необязателен — если не задан, баннер просто текстовый.
+alerts:
+  1:
+    text: "Вышел новый проект! Обязательно посмотрите!"
+    link: "https://github.com/borbehr-dev/vibe-bio"
+  2:
+    text: "Демо vibe-bio"
+    link: "https://borbehr-vibebio.pages.dev"

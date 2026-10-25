@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= title %></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="texture"></div>
+
+<% if (alerts && alerts.length) { %>
+<div class="alert-stack" id="alertStack">
+  <% alerts.forEach(function(a) { %>
+  <div class="alert-banner" data-alert-id="<%= a.id %>">
+    <span class="alert-text">
+      <%= a.text %>
+      <% if (a.link) { %><a href="<%= a.link %>" target="_blank" rel="noopener">смотреть ↗</a><% } %>
+    </span>
+    <button class="alert-close" data-alert-id="<%= a.id %>" aria-label="Закрыть">×</button>
+  </div>
+  <% }); %>
+</div>
+<% } %>
+
+<header class="masthead">
+  <div class="stamp-mark" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><text x="50" y="46" text-anchor="middle">BUILT</text><text x="50" y="62" text-anchor="middle">BY HAND</text></svg>
+  </div>
+  <div class="masthead-text">
+    <span class="manifest-no">MANIFEST&nbsp;№&nbsp;borBeHR‑01</span>
+  </div>
+  <nav class="masthead-nav">
+    <a href="/"<%- page === 'home' ? ' class="active"' : '' %>>home</a>
+    <a href="/audio/"<%- page === 'audio' ? ' class="active"' : '' %>>audio</a>
+    <a href="/projects/"<%- page === 'projects' ? ' class="active"' : '' %>>projects</a>
+    <a href="<%= telegramLink %>" target="_blank" rel="noopener">telegram ↗</a>
+  </nav>
+</header>
+
+<main>
+<%- body %>
+</main>
+
+<footer class="footer">
+  <div class="tear-line" aria-hidden="true"></div>
+  <span class="footer-text">упаковано и отправлено — node generate.js · <%= title %></span>
+</footer>
+
+<script src="/alerts.js"></script>
+<script src="/player.js"></script>
+<script src="/github-fetch.js"></script>
+</body>
+</html>
