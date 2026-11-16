@@ -905,7 +905,9 @@ kbd {
 }
 
 .alert-item__text {
+  min-width: 0;
   color: var(--text);
+  overflow-wrap: break-word;
 }
 
 .alert-item__link {

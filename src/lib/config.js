@@ -38,7 +38,8 @@ function normalizeAlerts(rawAlerts) {
       };
     })
     .filter((alert) => alert.text)
-    .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+    // Свежие объявления выше: новый алерт с большим id показывается первым.
+    .sort((a, b) => b.id.localeCompare(a.id, undefined, { numeric: true }));
 }
 
 const raw = readConfig();

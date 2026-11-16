@@ -1,0 +1,20 @@
+# Заголовки для Cloudflare Pages.
+# CSS/JS версионируются в сборке (?v=hash), поэтому их можно кешировать надолго.
+# Шрифты и картинки — без версии в URL, поэтому кеш умеренный.
+# HTML не кешируем: Cloudflare Pages сам отдаёт его с max-age=0.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/fonts/*
+  Cache-Control: public, max-age=604800
+
+/audio/*.mp3
+  Cache-Control: public, max-age=604800

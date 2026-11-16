@@ -1,9 +1,26 @@
+import crypto from 'node:crypto';
+import fs from 'node:fs';
 import { formatDateRu, formatDuration, formatLongDuration, formatNumber } from './src/lib/format.js';
+
+// Версионирование CSS/JS: /assets/js/site.js -> /assets/js/site.js?v=<hash>.
+// Нужно, чтобы после деплоя браузер не взял старый файл из кеша
+// (именно из-за этого сайт на телефоне открывался без стилей).
+function versionedAsset(url) {
+  if (typeof url !== 'string' || !url.startsWith('/assets/')) return url;
+  const source = url.replace(/^\//, '').replace(/^assets\//, 'src/assets/');
+  try {
+    const hash = crypto.createHash('sha256').update(fs.readFileSync(source)).digest('hex').slice(0, 8);
+    return `${url}?v=${hash}`;
+  } catch {
+    return url;
+  }
+}
 
 export default function eleventyConfig(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/assets': 'assets' });
   eleventyConfig.addPassthroughCopy({ public: '/' });
 
+  eleventyConfig.addFilter('asset', versionedAsset);
   eleventyConfig.addFilter('dateRu', formatDateRu);
   eleventyConfig.addFilter('duration', formatDuration);
   eleventyConfig.addFilter('longDuration', formatLongDuration);

@@ -78,23 +78,11 @@ const SNAPSHOT = [
     featured: false,
   },
   {
-    name: 'docs.borbehr.eu.org',
-    title: 'docs.borbehr.eu.org',
-    description: 'Документация проектов borbehr.',
-    url: 'https://github.com/borbehr-dev/docs.borbehr.eu.org',
-    homepage: '',
-    language: 'TypeScript',
-    category: 'Docs',
-    topics: ['docs'],
-    updatedAt: '2026-06-11T09:26:15Z',
-    featured: false,
-  },
-  {
-    name: 'bio.borbehr.eu.org',
-    title: 'bio.borbehr.eu.org',
+    name: 'bio',
+    title: 'bio',
     description: 'Персональная bio-страница проекта.',
-    url: 'https://github.com/borbehr-dev/bio.borbehr.eu.org',
-    homepage: 'https://bio.borbehr.eu.org',
+    url: 'https://github.com/borbehr-dev/bio',
+    homepage: 'https://borbehr-dev.github.io/bio/',
     language: 'HTML',
     category: 'Web',
     topics: ['bio'],
@@ -151,9 +139,23 @@ const ENRICHMENT = new Map(
   ])
 );
 
+// Проекты, которые не показываем на сайте: устаревшая документация.
+const HIDDEN_PROJECTS = new Set(['docs.borbehr.eu.org']);
+
 function normalizeDate(value) {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? null : date.toISOString();
+}
+
+// Живые адреса проектов, у которых старый домен или кривое поле homepage в GitHub.
+const HOMEPAGE_OVERRIDES = {
+  bio: 'https://borbehr-dev.github.io/bio/',
+};
+
+function sanitizeHomepage(value) {
+  if (typeof value !== 'string') return '';
+  const trimmed = value.trim();
+  return /^https?:\/\//i.test(trimmed) ? trimmed : '';
 }
 
 function deriveCategory(repo) {
@@ -171,7 +173,8 @@ function normalizeProject(repo, source) {
   const name = String(repo.name || 'project');
   const enrichment = ENRICHMENT.get(name) || {};
   const rawDescription = typeof repo.description === 'string' ? repo.description.trim() : '';
-  const homepage = enrichment.homepage ?? (typeof repo.homepage === 'string' ? repo.homepage.trim() : '');
+  const homepage =
+    HOMEPAGE_OVERRIDES[name] ?? sanitizeHomepage(enrichment.homepage ?? repo.homepage);
 
   return {
     name,
@@ -202,7 +205,7 @@ function projectFromManual(entry, index) {
     title: entry.title || entry.name || `project-${index + 1}`,
     description: entry.desc || entry.description || 'Проект borBeHR.',
     url: entry.link || entry.url || site.githubUrl,
-    homepage: entry.homepage || '',
+    homepage: sanitizeHomepage(entry.homepage),
     language: entry.language || 'Project',
     category: entry.category || 'Проект',
     topics: Array.isArray(entry.topics) ? entry.topics : [],
@@ -236,7 +239,7 @@ async function fetchGithubProjects() {
     if (!Array.isArray(repos)) throw new Error('GitHub API: неожиданный формат ответа');
 
     return repos
-      .filter((repo) => repo && !repo.fork && !repo.archived)
+      .filter((repo) => repo && !repo.fork && !repo.archived && !HIDDEN_PROJECTS.has(repo.name))
       .map((repo) => normalizeProject(repo, 'github'));
   } catch (error) {
     console.warn(`[projects] GitHub недоступен, использую локальный снимок: ${error.message}`);

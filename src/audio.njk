@@ -159,4 +159,4 @@ ogType: "website"
 </div>
 
 <script type="application/json" id="tracks-data">{{ tracks.items | jsonld | safe }}</script>
-<script type="module" src="/assets/js/audio.js"></script>
+<script type="module" src="{{ '/assets/js/audio.js' | asset }}"></script>
