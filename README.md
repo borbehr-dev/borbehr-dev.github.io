@@ -64,6 +64,7 @@ npm run preview
 ├── scripts/
 │   ├── clean.mjs               # очистка dist/
 │   ├── generate-assets.mjs     # sharp: favicon + OG
+│   ├── verify-dist.mjs         # проверка полноты сборки (запускается в build)
 │   └── serve.mjs               # preview-сервер с Range для MP3
 └── src/
     ├── _data/                  # данные Eleventy (site, tracks, projects, alerts)
@@ -206,15 +207,52 @@ npm ci
 npm run build
 ```
 
-Результат — каталог `dist/`.
+Результат — каталог `dist/`. В конце сборки `scripts/verify-dist.mjs` проверяет,
+что в `dist/` есть все страницы, CSS, JS, шрифты, иконки, `robots.txt`,
+`sitemap.xml`, и что локальные ссылки не битые. Если файлов не хватает —
+команда падает с ошибкой, а не публикует полусобранный сайт.
+
+### Важно: `dist/` коммитится в репозиторий
+
+Cloudflare Pages публикует содержимое **закоммиченного `dist/`**. Поэтому
+каталог намеренно **не добавлен в `.gitignore`**: иначе новые файлы сборки
+(`/assets/**`, `/about/`, `/robots.txt`, `/sitemap.xml`, иконки) остаются
+untracked и не попадают в деплой — сайт открывается без CSS и JS, а все
+неизвестные адреса отдают `index.html`.
+
+После сборки `dist/` нужно добавить в коммит целиком:
+
+```bash
+npm run build
+git add dist
+git status          # убедиться, что новые файлы попали в индекс
+git commit -m "build: обновление сайта"
+git push
+```
+
+Проверка, что критичные файлы действительно попали в git:
+
+```bash
+git ls-files dist | Select-String "assets/css/global.css|about/index.html|robots.txt"
+```
+
+Должно вывести три строки. Без git то же самое проверяет `npm run verify`.
 
 ### Cloudflare Pages
 
-Основной хостинг проекта. Настройки уже заданы в панели Cloudflare:
+Основной хостинг проекта:
 
-- Build command: `npm run build`
 - Build output directory: `dist`
+- Build command: пусто (деплоится уже готовый закоммиченный `dist/`)
 - Node.js version: `20`
+
+Если включить в панели Build command `npm run build`, Cloudflare будет собирать
+сайт сам при каждом пуше и коммитить `dist/` станет не нужно. Пока build
+command пустой — деплой берёт `dist/` из репозитория.
+
+После деплоя, если браузер/телефон держит старые файлы, очистите кеш:
+Cloudflare Dashboard → Caching → Purge Everything (или Purge by URL для
+`/assets/*`).
 
 Backend, база данных и переменные окружения не требуются. Домен `borbehr.eu.org`
 привязан к проекту Cloudflare Pages, поэтому `CNAME` в репозитории не нужен.
@@ -226,6 +264,15 @@ Workflow `.github/workflows/deploy.yml` устанавливает Node.js, вы
 публикации — основной сайт живёт на Cloudflare Pages. При необходимости
 домен для GitHub Pages настраивается в настройках репозитория, а не через
 файл `CNAME`.
+
+## Проверки
+
+```bash
+npm run build        # production-сборка + проверка полноты dist/
+npm run verify       # только проверка уже собранного dist/
+npm run preview      # локальная проверка dist/
+npm audit            # зависимостей с известными уязвимостями нет
+```
 
 ## Проверки
 

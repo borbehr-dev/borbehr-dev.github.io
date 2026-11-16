@@ -1,8 +1,9 @@
 # Dependencies
 node_modules/
 
-# Build output
-dist/
+# Build output НЕ игнорируется: Cloudflare Pages деплоит закоммиченный dist/ как есть.
+# Если добавить сюда dist/, новые файлы сборки (assets/, about/, robots.txt…)
+# никогда не попадут в деплой — сайт останется без CSS/JS.
 
 # Logs
 *.log

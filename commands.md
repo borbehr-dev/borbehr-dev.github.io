@@ -26,7 +26,8 @@ npm run dev      # dev-сервер с live reload
 | `npm ci` | Чистая установка строго по `package-lock.json` (как в CI) |
 | `npm run dev` | Dev-сервер Eleventy с live reload на `http://localhost:4321` |
 | `npm start` | То же, что `npm run dev` |
-| `npm run build` | Очищает `dist/` и собирает production-версию |
+| `npm run build` | Очищает `dist/` и собирает production-версию, затем проверяет полноту `dist/` |
+| `npm run verify` | Проверяет, что `dist/` полный: страницы, CSS, JS, шрифты, иконки, ссылки |
 | `npm run preview` | Локальный сервер для собранного `dist/` на `http://127.0.0.1:4173` |
 | `npm run clean` | Удаляет каталог `dist/` |
 | `npm run assets:generate` | Пересоздаёт favicon PNG и `og.png` из `public/favicon.svg` |
@@ -228,12 +229,39 @@ node -e "const fs=require('fs');const s=fs.readFileSync('dist/index.html','utf8'
 
 ## Деплой
 
-Основной хостинг — **Cloudflare Pages**, настройки уже заданы в панели:
+Основной хостинг — **Cloudflare Pages**. Он публикует **закоммиченный `dist/`**,
+поэтому каталог не должен быть в `.gitignore` (сейчас не в нём).
 
-- Build command: `npm run build`
+Обычный цикл публикации:
+
+```bash
+npm run build          # сборка + проверка полноты dist/
+git add dist           # именно dist — чтобы попали и новые файлы
+git status             # проверить, что /assets, /about, robots.txt в индексе
+git commit -m "build: обновление сайта"
+git push
+```
+
+Проверка, что критичные файлы попали в git:
+
+```bash
+git ls-files dist | Select-String "assets/css/global.css|about/index.html|robots.txt"
+```
+
+Должно быть три строки. Без git — `npm run verify`.
+
+После пуша Cloudflare пересобирает сайт сам. Если старые файлы остались в
+кеше: Cloudflare Dashboard → Caching → Purge Everything.
+
+Настройки проекта в панели:
+
+- Build command: пусто (деплоится готовый `dist/`)
 - Build output directory: `dist`
 - Node.js version: `20`
 - Переменные окружения не нужны
+
+Если задать Build command `npm run build`, Cloudflare начнёт собирать сайт сам и
+коммитить `dist/` станет не обязательно.
 
 Резервный вариант — **GitHub Pages** через `.github/workflows/deploy.yml`
 (`npm ci` → `npm run build` → публикация `dist/`). Менять workflow не требуется.
@@ -248,10 +276,12 @@ npm ci && npm run build
 
 | Симптом | Решение |
 | --- | --- |
+| На сайте нет стилей, в консоли `MIME type text/html` для `/assets/...` | В деплой попал неполный `dist/`: `dist/` был в `.gitignore`. Собрать, затем `git add dist` и запушить; после деплоя очистить кеш |
 | `EADDRINUSE` на 4321 | `npx @11ty/eleventy --serve --port=8080` |
 | `EADDRINUSE` на 4173 | `$env:PORT=5000; npm run preview` |
 | `preview` отдаёт старое | Сначала `npm run build`, затем `npm run preview` |
 | Пустой `dist/` | Запустить `npm run build` (он сам очищает `dist/`) |
+| `build` падает на `verify-dist` | В `dist/` нет файлов из списка — смотреть строки `✗` в выводе |
 | MP3 не играет локально | Проверить, что файл лежит в `public/audio/`, и пересобрать |
 | Шрифты не подхватились | Проверить `dist/assets/fonts/*.woff2` после сборки |
 | `npm ci` падает | Node должен быть 20+; lock-файл не удалять |

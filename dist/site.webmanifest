@@ -1,0 +1,23 @@
+{
+  "name": "borBeHR",
+  "short_name": "borBeHR",
+  "description": "Независимый звук, код и цифровые эксперименты.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080a09",
+  "theme_color": "#080a09",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
