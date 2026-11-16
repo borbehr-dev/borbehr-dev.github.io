@@ -1,84 +1,737 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang="ru" class="no-js">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>audio — borBeHR</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="Eleventy" />
+
+  <title>Звук — borBeHR</title>
+  <meta name="description" content="Архив треков borBeHR: восемь работ, полный веб-плеер, перемотка, повтор, случайный порядок и скачивание." />
+  <meta name="author" content="borBeHR" />
+  <link rel="canonical" href="https://borbehr.eu.org/audio/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta name="theme-color" content="#080a09" />
+  <meta name="color-scheme" content="dark" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="borBeHR" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content="Звук — borBeHR" />
+  <meta property="og:description" content="Архив треков borBeHR: восемь работ, полный веб-плеер, перемотка, повтор, случайный порядок и скачивание." />
+  <meta property="og:url" content="https://borbehr.eu.org/audio/" />
+  <meta property="og:image" content="https://borbehr.eu.org/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="borBeHR — звук, код и эксперименты" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Звук — borBeHR" />
+  <meta name="twitter:description" content="Архив треков borBeHR: восемь работ, полный веб-плеер, перемотка, повтор, случайный порядок и скачивание." />
+  <meta name="twitter:image" content="https://borbehr.eu.org/og.png" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preload" href="/assets/fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/global.css" />
+
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"borBeHR","url":"https://borbehr.eu.org","description":"Независимый звук, код и цифровые эксперименты. Треки, проекты и контакт borBeHR.","inLanguage":"ru-RU"},{"@type":"Person","name":"borBeHR","url":"https://borbehr.eu.org","sameAs":["https://t.me/venbehr","https://github.com/borbehr-dev"]}]}</script>
 </head>
-<body>
-<div class="texture"></div>
+<body id="top" class="page page--audio" data-page="audio">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
 
-
-<div class="alert-stack" id="alertStack">
   
-  <div class="alert-banner" data-alert-id="1">
-    <span class="alert-text">
-      Вышел новый проект! Обязательно посмотрите!
-      <a href="https://github.com/borbehr-dev/vibe-bio" target="_blank" rel="noopener">смотреть ↗</a>
+
+
+<header class="site-header" data-site-header>
+  <div class="container site-header__inner">
+    
+  <a class="brand" href="/" aria-label="borBeHR — на главную">
+    <span class="brand__mark" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none">
+        <rect x="1" y="1" width="38" height="38" rx="12" stroke="currentColor" stroke-opacity=".24"/>
+        <circle cx="20" cy="20" r="10.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2.5 3"/>
+        <circle cx="20" cy="20" r="3.2" fill="currentColor"/>
+        <path d="M20 3v5M20 32v5M3 20h5M32 20h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
     </span>
-    <button class="alert-close" data-alert-id="1" aria-label="Закрыть">×</button>
-  </div>
-  
-  <div class="alert-banner" data-alert-id="2">
-    <span class="alert-text">
-      Демо vibe-bio
-      <a href="https://borbehr-vibebio.pages.dev" target="_blank" rel="noopener">смотреть ↗</a>
-    </span>
-    <button class="alert-close" data-alert-id="2" aria-label="Закрыть">×</button>
-  </div>
-  
-</div>
+    <span class="brand__word">bor<span class="brand__accent">Be</span>HR</span>
+  </a>
 
 
-<header class="masthead">
-  <div class="stamp-mark" aria-hidden="true">
-    <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><text x="50" y="46" text-anchor="middle">BUILT</text><text x="50" y="62" text-anchor="middle">BY HAND</text></svg>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      
+        <a href="/">
+          <span>Главная</span>
+        </a>
+      
+        <a href="/audio/" class="is-active" aria-current="page">
+          <span>Звук</span>
+        </a>
+      
+        <a href="/projects/">
+          <span>Проекты</span>
+        </a>
+      
+        <a href="/about/">
+          <span>О проекте</span>
+        </a>
+      
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="icon-button icon-button--ghost" href="https://github.com/borbehr-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub borbehr-dev">
+        
+  
+    <svg class="icon icon--fill " width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.2-3.37-1.2-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .08 1.53 1.06 1.53 1.06.9 1.57 2.35 1.11 2.92.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.95c.85 0 1.7.12 2.5.35 1.9-1.33 2.74-1.05 2.74-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9l-.01 2.79c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z" clip-rule="evenodd"/></svg>
+  
+
+      </a>
+      <a class="button button--small button--lime header-cta" href="https://t.me/venbehr" target="_blank" rel="noopener noreferrer">
+        <span>Telegram</span>
+        
+  
+    <svg class="icon " width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
+        <span class="sr-only">Открыть меню</span>
+        <span class="menu-toggle__icon" aria-hidden="true">
+          <span></span><span></span>
+        </span>
+      </button>
+    </div>
   </div>
-  <div class="masthead-text">
-    <span class="manifest-no">MANIFEST&nbsp;№&nbsp;borBeHR‑01</span>
-  </div>
-  <nav class="masthead-nav">
-    <a href="/">home</a>
-    <a href="/audio/" class="active">audio</a>
-    <a href="/projects/">projects</a>
-    <a href="https://t.me/venbehr" target="_blank" rel="noopener">telegram ↗</a>
-  </nav>
+  <span class="site-header__progress" data-scroll-progress aria-hidden="true"></span>
 </header>
 
-<main>
-<section class="audio-section">
-  <h2 class="section-label">Сопроводительный звук</h2>
-  <div class="player" id="player">
-    <button class="play-btn" id="playBtn" aria-label="Воспроизвести">
-      <svg id="iconPlay" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      <svg id="iconPause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-    </button>
-    <div class="player-info">
-      <div class="track-name" id="trackName">трек не выбран</div>
-      <div class="waveform" id="waveform" aria-hidden="true"></div>
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true" inert>
+  <div class="mobile-menu__backdrop" data-menu-close aria-hidden="true"></div>
+  <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Меню сайта">
+    <div class="mobile-menu__top">
+      <span class="eyebrow">Навигация</span>
+      <button class="icon-button" type="button" data-menu-close aria-label="Закрыть меню">
+        
+  
+    <svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  
+
+      </button>
     </div>
-    <span class="time" id="timeDisplay">0:00</span>
-    <div class="player-nav">
-      <button class="nav-btn" id="prevBtn" aria-label="Предыдущий трек">‹</button>
-      <button class="nav-btn" id="nextBtn" aria-label="Следующий трек">›</button>
+
+    <nav class="mobile-nav" aria-label="Мобильная навигация">
+      
+        <a href="/" data-menu-link>
+          <span class="mobile-nav__index">01</span>
+          <span class="mobile-nav__label">Главная</span>
+          
+  
+    <svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+        </a>
+      
+        <a href="/audio/" class="is-active" aria-current="page" data-menu-link>
+          <span class="mobile-nav__index">02</span>
+          <span class="mobile-nav__label">Звук</span>
+          
+  
+    <svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+        </a>
+      
+        <a href="/projects/" data-menu-link>
+          <span class="mobile-nav__index">03</span>
+          <span class="mobile-nav__label">Проекты</span>
+          
+  
+    <svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+        </a>
+      
+        <a href="/about/" data-menu-link>
+          <span class="mobile-nav__index">04</span>
+          <span class="mobile-nav__label">О проекте</span>
+          
+  
+    <svg class="icon " width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+        </a>
+      
+    </nav>
+
+    <div class="mobile-menu__contact">
+      <p class="eyebrow">Связь</p>
+      <a class="mobile-menu__telegram" href="https://t.me/venbehr" target="_blank" rel="noopener noreferrer">
+        <span>@venbehr</span>
+        
+  
+    <svg class="icon icon--fill " width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.7 4.2 17.9 19c-.2 1-.8 1.2-1.6.8l-4.5-3.3-2.2 2.1c-.2.2-.4.4-.9.4l.3-4.5 8.2-7.4c.4-.3-.1-.5-.5-.2L7.5 13l-4.3-1.3c-.9-.3-.9-.9.2-1.3L19 3.9c.8-.3 1.5.2 1.2.3Z"/></svg>
+  
+
+      </a>
+      <a class="text-link text-link--muted" href="https://github.com/borbehr-dev" target="_blank" rel="noopener noreferrer">
+        <span>github.com/borbehr-dev</span>
+        
+  
+    <svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+      </a>
     </div>
+
+    <p class="mobile-menu__note">Все Telegram-каналы удалены. Связь — только @venbehr.</p>
   </div>
-  <ul class="tracklist" id="tracklist"></ul>
+</div>
+
+<noscript>
+  <nav class="noscript-nav" aria-label="Навигация без JavaScript">
+    <div class="container">
+      <a href="/">Главная</a><a href="/audio/">Звук</a><a href="/projects/">Проекты</a><a href="/about/">О проекте</a>
+      <a href="https://t.me/venbehr">Telegram</a>
+    </div>
+  </nav>
+</noscript>
+
+  
+  
+    <aside class="alert-rail" aria-label="Объявления" data-alert-rail>
+      <div class="container alert-rail__inner">
+        
+          <div class="alert-item" data-alert-id="1">
+            <span class="alert-item__dot" aria-hidden="true"></span>
+            <span class="alert-item__text">Вышел новый проект! Обязательно посмотрите!</span>
+            
+              <a class="alert-item__link" href="https://github.com/borbehr-dev/vibe-bio" target="_blank" rel="noopener noreferrer">
+                Перейти 
+  
+    <svg class="icon " width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+              </a>
+            
+            <button class="alert-item__close" type="button" data-alert-close aria-label="Закрыть объявление «Вышел новый проект! Обязательно посмотрите!»">
+              
+  
+    <svg class="icon " width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  
+
+            </button>
+          </div>
+        
+          <div class="alert-item" data-alert-id="2">
+            <span class="alert-item__dot" aria-hidden="true"></span>
+            <span class="alert-item__text">Демо vibe-bio</span>
+            
+              <a class="alert-item__link" href="https://borbehr-vibebio.pages.dev" target="_blank" rel="noopener noreferrer">
+                Перейти 
+  
+    <svg class="icon " width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+              </a>
+            
+            <button class="alert-item__close" type="button" data-alert-close aria-label="Закрыть объявление «Демо vibe-bio»">
+              
+  
+    <svg class="icon " width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  
+
+            </button>
+          </div>
+        
+      </div>
+    </aside>
+  
+
+
+  <main id="main" class="site-main">
+    
+
+
+
+<section class="page-hero audio-hero">
+  <div class="page-hero__backdrop" aria-hidden="true"></div>
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Звук</span>
+    </nav>
+
+    <div class="audio-hero__heading">
+      <div data-reveal>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> audio archive / 08 tracks</p>
+        <h1 class="page-title">Звук<span class="page-title__accent">.</span></h1>
+      </div>
+      <p class="page-lead" data-reveal>Треки, записанные без дедлайнов и&nbsp;чужих ожиданий. Включайте громче — остальное подождёт.</p>
+
+      <dl class="page-stats" data-reveal>
+        <div><dt>Треков</dt><dd>08</dd></div>
+        <div><dt>Общая длина</dt><dd>20 мин</dd></div>
+        <div><dt>Формат</dt><dd>MP3</dd></div>
+      </dl>
+    </div>
+
+    <section class="player" data-player aria-label="Аудиоплеер" data-reveal>
+      <div class="player__art" data-player-art style="--track-hue: 24; --track-hue-2: 198;">
+        <span class="player__art-grid" aria-hidden="true"></span>
+        <span class="player__art-number" data-player-number>01</span>
+        <span class="player__art-ring" aria-hidden="true"></span>
+        <span class="player__art-title" data-player-art-title>Viper</span>
+        <span class="player__art-state" data-player-state>standby</span>
+      </div>
+
+      <div class="player__body">
+        <div class="player__topline">
+          <span class="mono-label">now playing</span>
+          <span class="player__counter" data-player-counter>01 / 08</span>
+        </div>
+
+        <div class="player__now">
+          <h2 class="player__title" data-player-title>Viper</h2>
+          <p class="player__meta" data-player-meta>borBeHR <span aria-hidden="true">·</span> audio archive</p>
+        </div>
+
+        <div class="player__timeline">
+          <span class="player__time" data-player-current>0:00</span>
+          <input class="range range--seek" type="range" min="0" max="100" value="0" step="0.1" data-player-seek aria-label="Позиция воспроизведения" />
+          <span class="player__time" data-player-duration>2:23</span>
+        </div>
+
+        <div class="player__controls">
+          <div class="player__control-group">
+            <button class="icon-button icon-button--control" type="button" data-player-shuffle aria-pressed="false" aria-label="Случайный порядок" title="Случайный порядок">
+              
+  
+    <svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 7h2.5c4.5 0 6.5 10 11 10H20m0 0-3-3m3 3-3 3M4 17h2.5c1.6 0 2.9-1.3 4.1-3m2.8-4c1.2-1.7 2.5-3 4.1-3H20m0 0-3-3m3 3-3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+            </button>
+            <button class="icon-button icon-button--control" type="button" data-player-prev aria-label="Предыдущий трек" title="Предыдущий трек">
+              
+  
+    <svg class="icon icon--fill " width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6 5h2v14H6zM18.6 6.1c.7-.4 1.4.1 1.4.8v10.2c0 .7-.7 1.2-1.4.8l-8.2-5.1a.9.9 0 0 1 0-1.6l8.2-5.1Z"/></svg>
+  
+
+            </button>
+            <button class="player__play" type="button" data-player-toggle aria-label="Воспроизвести" title="Воспроизвести">
+              <span class="player__play-icon player__play-icon--play">
+  
+    <svg class="icon icon--fill " width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.5 5.8c0-.8.9-1.3 1.6-.9l8.4 5.3c.7.4.7 1.4 0 1.8l-8.4 5.3c-.7.4-1.6-.1-1.6-.9V5.8Z"/></svg>
+  
+</span>
+              <span class="player__play-icon player__play-icon--pause">
+  
+    <svg class="icon icon--fill " width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/></svg>
+  
+</span>
+            </button>
+            <button class="icon-button icon-button--control" type="button" data-player-next aria-label="Следующий трек" title="Следующий трек">
+              
+  
+    <svg class="icon icon--fill " width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16 5h2v14h-2zM5.4 6.1C4.7 5.7 4 6.2 4 6.9v10.2c0 .7.7 1.2 1.4.8l8.2-5.1a.9.9 0 0 0 0-1.6L5.4 6.1Z"/></svg>
+  
+
+            </button>
+            <button class="icon-button icon-button--control" type="button" data-player-repeat aria-label="Повтор: выключен" title="Повтор: выключен" aria-pressed="false">
+              <span data-repeat-icon>
+  
+    <svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m17 2 4 4-4 4M21 6H8a4 4 0 0 0-4 4v1M7 22l-4-4 4-4M3 18h13a4 4 0 0 0 4-4v-1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+</span>
+            </button>
+          </div>
+
+          <div class="player__secondary">
+            <button class="icon-button icon-button--control" type="button" data-player-mute aria-label="Выключить звук" title="Выключить звук">
+              <span data-volume-icon>
+  
+    <svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 9.5v5h3.2L12 18V6L7.2 9.5H4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16 9a4.2 4.2 0 0 1 0 6M18.7 6.3a8 8 0 0 1 0 11.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+  
+</span>
+            </button>
+            <input class="range range--volume" type="range" min="0" max="1" value="0.85" step="0.01" data-player-volume aria-label="Громкость" />
+            <a class="icon-button icon-button--control" href="/audio/Viper.mp3" download="Viper.mp3" data-player-download aria-label="Скачать текущий трек" title="Скачать текущий трек">
+              
+  
+    <svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+            </a>
+          </div>
+        </div>
+
+        <p class="player__hint">
+          <kbd>Space</kbd> play / pause
+          <span aria-hidden="true">·</span>
+          <kbd>←</kbd><kbd>→</kbd> перемотка
+          <span aria-hidden="true">·</span>
+          <kbd>M</kbd> звук
+        </p>
+      </div>
+    </section>
+
+    <p class="sr-only" aria-live="polite" data-player-announcer></p>
+  </div>
 </section>
 
-</main>
+<section class="section section--tracklist">
+  <div class="container">
+    <div class="tracklist-head" data-reveal>
+      <div>
+        <p class="eyebrow">Полный архив</p>
+        <h2 class="section-title">Все треки</h2>
+      </div>
+      <div class="tracklist-tools">
+        <div class="search-field">
+          <label class="sr-only" for="track-search">Найти трек</label>
+          
+  
+    <svg class="icon " width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+  
 
-<footer class="footer">
-  <div class="tear-line" aria-hidden="true"></div>
-  <span class="footer-text">упаковано и отправлено — node generate.js · audio — borBeHR</span>
+          <input id="track-search" type="search" placeholder="Найти трек" autocomplete="off" data-track-filter />
+          <button class="search-field__clear" type="button" data-track-clear aria-label="Очистить поиск" hidden>
+            
+  
+    <svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  
+
+          </button>
+        </div>
+        <span class="tracklist-count" data-track-count>08 / 08</span>
+      </div>
+    </div>
+
+    <ol class="track-list" data-track-list>
+      
+        <li class="track-row is-active" data-track-row data-index="0" data-search="viper viper" data-reveal>
+          <button class="track-row__main" type="button" data-track-play aria-label="Воспроизвести «Viper»">
+            <span class="track-row__number">
+              <span class="track-row__index">01</span>
+              <span class="track-row__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="track-row__cover" style="--track-hue: 24; --track-hue-2: 198;" aria-hidden="true"><i></i></span>
+            <span class="track-row__body">
+              <span class="track-row__title">Viper</span>
+              <span class="track-row__meta">borBeHR / archive</span>
+            </span>
+          </button>
+          <span class="track-row__duration">2:23</span>
+          <a class="track-row__download" href="/audio/Viper.mp3" download="Viper.mp3" aria-label="Скачать трек «Viper»" title="Скачать">
+            
+  
+    <svg class="icon " width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+          </a>
+        </li>
+      
+        <li class="track-row" data-track-row data-index="1" data-search="мой голос — закон moy-golos-zakon" data-reveal>
+          <button class="track-row__main" type="button" data-track-play aria-label="Воспроизвести «Мой голос — закон»">
+            <span class="track-row__number">
+              <span class="track-row__index">02</span>
+              <span class="track-row__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="track-row__cover" style="--track-hue: 14; --track-hue-2: 62;" aria-hidden="true"><i></i></span>
+            <span class="track-row__body">
+              <span class="track-row__title">Мой голос — закон</span>
+              <span class="track-row__meta">borBeHR / archive</span>
+            </span>
+          </button>
+          <span class="track-row__duration">2:37</span>
+          <a class="track-row__download" href="/audio/%D0%9C%D0%BE%D0%B9%20%D0%B3%D0%BE%D0%BB%D0%BE%D1%81%20%E2%80%94%20%D0%B7%D0%B0%D0%BA%D0%BE%D0%BD.mp3" download="Мой голос — закон.mp3" aria-label="Скачать трек «Мой голос — закон»" title="Скачать">
+            
+  
+    <svg class="icon " width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+          </a>
+        </li>
+      
+        <li class="track-row" data-track-row data-index="2" data-search="кровавый bedrock krovavyy-bedrock" data-reveal>
+          <button class="track-row__main" type="button" data-track-play aria-label="Воспроизвести «Кровавый Bedrock»">
+            <span class="track-row__number">
+              <span class="track-row__index">03</span>
+              <span class="track-row__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="track-row__cover" style="--track-hue: 44; --track-hue-2: 96;" aria-hidden="true"><i></i></span>
+            <span class="track-row__body">
+              <span class="track-row__title">Кровавый Bedrock</span>
+              <span class="track-row__meta">borBeHR / archive</span>
+            </span>
+          </button>
+          <span class="track-row__duration">2:38</span>
+          <a class="track-row__download" href="/audio/%D0%9A%D1%80%D0%BE%D0%B2%D0%B0%D0%B2%D1%8B%D0%B9_Bedrock.mp3" download="Кровавый_Bedrock.mp3" aria-label="Скачать трек «Кровавый Bedrock»" title="Скачать">
+            
+  
+    <svg class="icon " width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+          </a>
+        </li>
+      
+        <li class="track-row" data-track-row data-index="3" data-search="linux в руках linux-v-rukah" data-reveal>
+          <button class="track-row__main" type="button" data-track-play aria-label="Воспроизвести «Linux в руках»">
+            <span class="track-row__number">
+              <span class="track-row__index">04</span>
+              <span class="track-row__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="track-row__cover" style="--track-hue: 74; --track-hue-2: 44;" aria-hidden="true"><i></i></span>
+            <span class="track-row__body">
+              <span class="track-row__title">Linux в руках</span>
+              <span class="track-row__meta">borBeHR / archive</span>
+            </span>
+          </button>
+          <span class="track-row__duration">3:07</span>
+          <a class="track-row__download" href="/audio/linux-%D0%B2-%D1%80%D1%83%D0%BA%D0%B0%D1%85.mp3" download="linux-в-руках.mp3" aria-label="Скачать трек «Linux в руках»" title="Скачать">
+            
+  
+    <svg class="icon " width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+          </a>
+        </li>
+      
+        <li class="track-row" data-track-row data-index="4" data-search="минт на максимум mint-na-maksimum" data-reveal>
+          <button class="track-row__main" type="button" data-track-play aria-label="Воспроизвести «Минт на максимум»">
+            <span class="track-row__number">
+              <span class="track-row__index">05</span>
+              <span class="track-row__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="track-row__cover" style="--track-hue: 198; --track-hue-2: 326;" aria-hidden="true"><i></i></span>
+            <span class="track-row__body">
+              <span class="track-row__title">Минт на максимум</span>
+              <span class="track-row__meta">borBeHR / archive</span>
+            </span>
+          </button>
+          <span class="track-row__duration">1:59</span>
+          <a class="track-row__download" href="/audio/%D0%BC%D0%B8%D0%BD%D1%82%20%D0%BD%D0%B0%20%D0%BC%D0%B0%D0%BA%D1%81%D0%B8%D0%BC%D1%83%D0%BC.mp3" download="минт на максимум.mp3" aria-label="Скачать трек «Минт на максимум»" title="Скачать">
+            
+  
+    <svg class="icon " width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+          </a>
+        </li>
+      
+        <li class="track-row" data-track-row data-index="5" data-search="свой закон (v2) svoy-zakon-v2" data-reveal>
+          <button class="track-row__main" type="button" data-track-play aria-label="Воспроизвести «Свой Закон (V2)»">
+            <span class="track-row__number">
+              <span class="track-row__index">06</span>
+              <span class="track-row__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="track-row__cover" style="--track-hue: 96; --track-hue-2: 74;" aria-hidden="true"><i></i></span>
+            <span class="track-row__body">
+              <span class="track-row__title">Свой Закон (V2)</span>
+              <span class="track-row__meta">borBeHR / archive</span>
+            </span>
+          </button>
+          <span class="track-row__duration">2:58</span>
+          <a class="track-row__download" href="/audio/%D0%A1%D0%B2%D0%BE%D0%B9%20%D0%97%D0%B0%D0%BA%D0%BE%D0%BD%20(V2).mp3" download="Свой Закон (V2).mp3" aria-label="Скачать трек «Свой Закон (V2)»" title="Скачать">
+            
+  
+    <svg class="icon " width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+          </a>
+        </li>
+      
+        <li class="track-row" data-track-row data-index="6" data-search="хулиган huligan" data-reveal>
+          <button class="track-row__main" type="button" data-track-play aria-label="Воспроизвести «Хулиган»">
+            <span class="track-row__number">
+              <span class="track-row__index">07</span>
+              <span class="track-row__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="track-row__cover" style="--track-hue: 326; --track-hue-2: 24;" aria-hidden="true"><i></i></span>
+            <span class="track-row__body">
+              <span class="track-row__title">Хулиган</span>
+              <span class="track-row__meta">borBeHR / archive</span>
+            </span>
+          </button>
+          <span class="track-row__duration">1:26</span>
+          <a class="track-row__download" href="/audio/%D0%A5%D1%83%D0%BB%D0%B8%D0%B3%D0%B0%D0%BD%20by%20borBeHR.mp3" download="Хулиган by borBeHR.mp3" aria-label="Скачать трек «Хулиган»" title="Скачать">
+            
+  
+    <svg class="icon " width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+          </a>
+        </li>
+      
+        <li class="track-row" data-track-row data-index="7" data-search="картина рук його kartina-ruk-yogo" data-reveal>
+          <button class="track-row__main" type="button" data-track-play aria-label="Воспроизвести «Картина рук Його»">
+            <span class="track-row__number">
+              <span class="track-row__index">08</span>
+              <span class="track-row__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="track-row__cover" style="--track-hue: 164; --track-hue-2: 14;" aria-hidden="true"><i></i></span>
+            <span class="track-row__body">
+              <span class="track-row__title">Картина рук Його</span>
+              <span class="track-row__meta">borBeHR / archive</span>
+            </span>
+          </button>
+          <span class="track-row__duration">2:58</span>
+          <a class="track-row__download" href="/audio/%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%B0_%D1%80%D1%83%D0%BA_%D0%99%D0%BE%D0%B3%D0%BE.mp3" download="Картина_рук_Його.mp3" aria-label="Скачать трек «Картина рук Його»" title="Скачать">
+            
+  
+    <svg class="icon " width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+          </a>
+        </li>
+      
+    </ol>
+
+    <p class="tracklist-empty" data-track-empty hidden>Ничего не нашлось. Попробуйте другое слово.</p>
+
+    <div class="tracklist-foot" data-reveal>
+      <span class="mono-label">08 tracks · 20 мин</span>
+      <span class="tracklist-foot__note">Файлы доступны для скачивания. Пожалуйста, указывайте автора при публикации.</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  
+  <section class="contact-cta" data-reveal>
+    <div class="contact-cta__glow" aria-hidden="true"></div>
+    <div class="contact-cta__content">
+      <p class="eyebrow"><span class="status-dot"></span> Открыт к диалогу</p>
+      <h2>Есть идея,<br />вопрос или трек?</h2>
+      <p class="contact-cta__text">Напишите напрямую в Telegram. Без форм, менеджеров и ожидания.</p>
+    </div>
+    <div class="contact-cta__action">
+      <a class="button button--lime button--large" href="https://t.me/venbehr" target="_blank" rel="noopener noreferrer">
+        <span>@venbehr</span>
+        
+  
+    <svg class="icon icon--fill " width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.7 4.2 17.9 19c-.2 1-.8 1.2-1.6.8l-4.5-3.3-2.2 2.1c-.2.2-.4.4-.9.4l.3-4.5 8.2-7.4c.4-.3-.1-.5-.5-.2L7.5 13l-4.3-1.3c-.9-.3-.9-.9.2-1.3L19 3.9c.8-.3 1.5.2 1.2.3Z"/></svg>
+  
+
+      </a>
+      <a class="text-link text-link--muted" href="https://github.com/borbehr-dev" target="_blank" rel="noopener noreferrer">
+        <span>или GitHub</span>
+        
+  
+    <svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<script type="application/json" id="tracks-data">[{"title":"Viper","slug":"viper","order":1,"file":"Viper.mp3","src":"/audio/Viper.mp3","duration":143.9869387755102,"durationLabel":"2:23","featured":true,"bars":[74,40,86,64,48,38,34,36,44,58,78,30,62,26,70,46,28,16,84,84,16,28,46,70,26,62,30,78,58,44,36,34,38,48,64,86,40,74,40,86,64,48,38,34],"hue":24,"hue2":198,"number":1,"numberLabel":"01"},{"title":"Мой голос — закон","slug":"moy-golos-zakon","order":2,"file":"Мой голос — закон.mp3","src":"/audio/%D0%9C%D0%BE%D0%B9%20%D0%B3%D0%BE%D0%BB%D0%BE%D1%81%20%E2%80%94%20%D0%B7%D0%B0%D0%BA%D0%BE%D0%BD.mp3","duration":157.8057142857143,"durationLabel":"2:37","featured":true,"bars":[42,82,54,32,16,80,76,78,86,26,46,72,30,68,38,88,70,58,52,52,58,70,88,38,68,30,72,46,26,86,78,76,80,16,32,54,82,42,82,54,32,16,80,76],"hue":14,"hue2":62,"number":2,"numberLabel":"02"},{"title":"Кровавый Bedrock","slug":"krovavyy-bedrock","order":3,"file":"Кровавый_Bedrock.mp3","src":"/audio/%D0%9A%D1%80%D0%BE%D0%B2%D0%B0%D0%B2%D1%8B%D0%B9_Bedrock.mp3","duration":158.64163265306124,"durationLabel":"2:38","featured":true,"bars":[58,24,70,48,32,22,18,20,28,42,62,88,46,84,54,30,86,74,68,68,74,86,30,54,84,46,88,62,42,28,20,18,22,32,48,70,24,58,24,70,48,32,22,18],"hue":44,"hue2":96,"number":3,"numberLabel":"03"},{"title":"Linux в руках","slug":"linux-v-rukah","order":4,"file":"linux-в-руках.mp3","src":"/audio/linux-%D0%B2-%D1%80%D1%83%D0%BA%D0%B0%D1%85.mp3","duration":187.2,"durationLabel":"3:07","featured":false,"bars":[45,85,57,35,19,83,79,81,89,29,49,75,33,71,41,17,73,61,55,55,61,73,17,41,71,33,75,49,29,89,81,79,83,19,35,57,85,45,85,57,35,19,83,79],"hue":74,"hue2":44,"number":4,"numberLabel":"04"},{"title":"Минт на максимум","slug":"mint-na-maksimum","order":5,"file":"минт на максимум.mp3","src":"/audio/%D0%BC%D0%B8%D0%BD%D1%82%20%D0%BD%D0%B0%20%D0%BC%D0%B0%D0%BA%D1%81%D0%B8%D0%BC%D1%83%D0%BC.mp3","duration":119.592,"durationLabel":"1:59","featured":false,"bars":[87,53,25,77,61,51,47,49,57,71,17,43,75,39,83,59,41,29,23,23,29,41,59,83,39,75,43,17,71,57,49,47,51,61,77,25,53,87,53,25,77,61,51,47],"hue":198,"hue2":326,"number":5,"numberLabel":"05"},{"title":"Свой Закон (V2)","slug":"svoy-zakon-v2","order":6,"file":"Свой Закон (V2).mp3","src":"/audio/%D0%A1%D0%B2%D0%BE%D0%B9%20%D0%97%D0%B0%D0%BA%D0%BE%D0%BD%20(V2).mp3","duration":178.848,"durationLabel":"2:58","featured":false,"bars":[71,37,83,61,45,35,31,33,41,55,75,27,59,23,67,43,25,87,81,81,87,25,43,67,23,59,27,75,55,41,33,31,35,45,61,83,37,71,37,83,61,45,35,31],"hue":96,"hue2":74,"number":6,"numberLabel":"06"},{"title":"Хулиган","slug":"huligan","order":7,"file":"Хулиган by borBeHR.mp3","src":"/audio/%D0%A5%D1%83%D0%BB%D0%B8%D0%B3%D0%B0%D0%BD%20by%20borBeHR.mp3","duration":86.15183673469387,"durationLabel":"1:26","featured":false,"bars":[26,66,38,16,74,64,60,62,70,84,30,56,88,52,22,72,54,42,36,36,42,54,72,22,52,88,56,30,84,70,62,60,64,74,16,38,66,26,66,38,16,74,64,60],"hue":326,"hue2":24,"number":7,"numberLabel":"07"},{"title":"Картина рук Його","slug":"kartina-ruk-yogo","order":8,"file":"Картина_рук_Його.mp3","src":"/audio/%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%B0_%D1%80%D1%83%D0%BA_%D0%99%D0%BE%D0%B3%D0%BE.mp3","duration":178.41632653061225,"durationLabel":"2:58","featured":false,"bars":[29,69,41,19,77,67,63,65,73,87,33,59,17,55,25,75,57,45,39,39,45,57,75,25,55,17,59,33,87,73,65,63,67,77,19,41,69,29,69,41,19,77,67,63],"hue":164,"hue2":14,"number":8,"numberLabel":"08"}]</script>
+<script type="module" src="/assets/js/audio.js"></script>
+
+  </main>
+
+  
+
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__lead">
+        
+  <a class="brand" href="/" aria-label="borBeHR — на главную">
+    <span class="brand__mark" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none">
+        <rect x="1" y="1" width="38" height="38" rx="12" stroke="currentColor" stroke-opacity=".24"/>
+        <circle cx="20" cy="20" r="10.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2.5 3"/>
+        <circle cx="20" cy="20" r="3.2" fill="currentColor"/>
+        <path d="M20 3v5M20 32v5M3 20h5M32 20h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="brand__word">bor<span class="brand__accent">Be</span>HR</span>
+  </a>
+
+        <p class="site-footer__statement">
+          Звук, код и цифровые эксперименты.<br />
+          Без посредников и лишнего шума.
+        </p>
+        <a class="site-footer__contact" href="https://t.me/venbehr" target="_blank" rel="noopener noreferrer">
+          <span>@venbehr</span>
+          
+  
+    <svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+
+        </a>
+      </div>
+
+      <div class="site-footer__nav">
+        <div class="site-footer__column">
+          <p class="eyebrow">Разделы</p>
+          
+            <a href="/">Главная</a>
+          
+            <a href="/audio/">Звук</a>
+          
+            <a href="/projects/">Проекты</a>
+          
+            <a href="/about/">О проекте</a>
+          
+        </div>
+        <div class="site-footer__column">
+          <p class="eyebrow">Ссылки</p>
+          <a href="https://t.me/venbehr" target="_blank" rel="noopener noreferrer">Telegram 
+  
+    <svg class="icon " width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+</a>
+          <a href="https://github.com/borbehr-dev" target="_blank" rel="noopener noreferrer">GitHub 
+  
+    <svg class="icon " width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+</a>
+          <a href="/audio/">Все треки 
+  
+    <svg class="icon " width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+</a>
+        </div>
+        <div class="site-footer__column site-footer__column--wide">
+          <p class="eyebrow">Статус</p>
+          <p class="site-footer__notice">Все Telegram-каналы удалены.<br /><span>Связь — только @venbehr.</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__wordmark" aria-hidden="true">bor<span>Be</span>HR</div>
+
+    <div class="site-footer__bottom">
+      <span>© 2026 borBeHR</span>
+      <span class="site-footer__dot" aria-hidden="true"></span>
+      <span>Статический сайт без трекеров</span>
+      <a class="site-footer__up" href="#top">Наверх 
+  
+    <svg class="icon " width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  
+</a>
+    </div>
+  </div>
 </footer>
 
-<script src="/alerts.js"></script>
-<script src="/player.js"></script>
-<script src="/github-fetch.js"></script>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <script type="module" src="/assets/js/site.js"></script>
 </body>
 </html>

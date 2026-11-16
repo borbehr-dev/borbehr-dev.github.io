@@ -1,47 +1,236 @@
 # borbehr.eu.org
 
-Весь исходный код сайта https://borbehr.eu.org/
+Новая версия сайта **borBeHR** — независимый звук, код и цифровые эксперименты.
 
-Node.js-версия генератора (раньше был Go: `generate.go` + `serve.go` + `projects.yml`).
-Теперь всё в одном `config.yaml` — сайт, проекты и закрываемые алерты.
+Статический сайт без backend, аналитики, трекеров и обязательных внешних сервисов.
+Собирается в обычные HTML/CSS/JS-файлы и одинаково хорошо работает на GitHub Pages
+и Cloudflare Pages.
 
-## Запуск
+## Стек
+
+- **Eleventy 3** — генератор статического сайта.
+- **Nunjucks** — шаблоны, layouts, компоненты и макросы.
+- **CSS** — собственная дизайн-система без фреймворков.
+- **Vanilla JavaScript** — меню, аудиоплеер, фильтры, алерты.
+- **Node.js 20+** — сборка.
+- **sharp** — генерация favicon и OG-изображения (только при обновлении ассетов).
+- **music-metadata** — чтение длительности MP3 во время сборки.
+
+## Быстрый старт
+
+Требуется Node.js 20 или новее.
 
 ```bash
 npm install
-npm run build   # рендерит templates/ + static/ → dist/
-npm run serve   # локальный сервер на http://localhost:8000
-# или сразу оба шага:
-npm start
+npm run dev
 ```
 
-## Структура
+Сайт откроется на `http://localhost:4321`.
 
-- `config.yaml` — **единый конфиг**: `site` (заголовок, telegram, github_user),
-  `projects` (список проектов портфолио; если пуст — сайт сам подтянет репозитории
-  с GitHub API прямо в браузере), `alerts` (закрываемые баннеры наверху).
-- `generate.js` — рендерит `templates/*.ejs` + копирует `static/` → `dist/`,
-  сканирует `static/audio/` и генерирует `dist/audio/tracks.json`.
-- `serve.js` — простой локальный статический сервер без зависимостей.
-- `templates/` — layout + страницы (home, audio, projects) на EJS.
-- `static/` — css, js (`player.js`, `github-fetch.js`, `alerts.js`), аудио-файлы.
+### Команды
 
-## Алерты
+Полный список команд, проверок и типовых задач — в [`commands.md`](./commands.md).
+
+| Команда | Что делает |
+| --- | --- |
+| `npm run dev` | Dev-сервер Eleventy с live reload |
+| `npm run build` | Очищает `dist/` и собирает production-версию |
+| `npm run preview` | Локальный preview собранного `dist/` на `http://127.0.0.1:4173` |
+| `npm run clean` | Удаляет `dist/` |
+| `npm run assets:generate` | Пересоздаёт favicon PNG и `og.png` из `public/favicon.svg` |
+
+Обычный сценарий проверки:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Структура проекта
+
+```text
+.
+├── config.yaml                 # сайт, алерты, ручные проекты
+├── eleventy.config.js          # настройки Eleventy и фильтры
+├── public/                     # копируется в корень dist/ (аудио, иконки, OG)
+│   ├── audio/                  # MP3-файлы
+│   ├── favicon.svg
+│   ├── favicon-32.png
+│   ├── favicon-192.png
+│   ├── apple-touch-icon.png
+│   ├── og.png
+│   ├── site.webmanifest
+│   └── .nojekyll               # отключает Jekyll на GitHub Pages (резерв)
+├── scripts/
+│   ├── clean.mjs               # очистка dist/
+│   ├── generate-assets.mjs     # sharp: favicon + OG
+│   └── serve.mjs               # preview-сервер с Range для MP3
+└── src/
+    ├── _data/                  # данные Eleventy (site, tracks, projects, alerts)
+    ├── _includes/
+    │   ├── components/         # UI-макросы, иконки, логотип
+    │   ├── site-header.njk
+    │   └── site-footer.njk
+    ├── _layouts/base.njk       # общий каркас, SEO, OG, шрифты
+    ├── assets/
+    │   ├── css/global.css
+    │   ├── fonts/*.woff2
+    │   └── js/                 # site.js, audio.js, projects.js
+    ├── lib/                    # конфиг, треки, проекты, форматирование
+    ├── index.njk               # /
+    ├── audio.njk               # /audio/
+    ├── projects.njk            # /projects/
+    ├── about.njk               # /about/
+    ├── 404.njk                 # /404.html
+    ├── robots.njk              # /robots.txt
+    └── sitemap.njk             # /sitemap.xml
+```
+
+Production-сборка находится в **`dist/`**.
+
+## Контент
+
+### Сайт и контакты
+
+Всё верхнеуровневое содержимое задаётся в `config.yaml`:
+
+```yaml
+site:
+  title: "borBeHR — portfolio"
+  name: "borBeHR"
+  url: "https://borbehr.eu.org"
+  description: "..."
+  locale: "ru_RU"
+  telegram_link: "https://t.me/venbehr"
+  telegram_handle: "@venbehr"
+  github_user: "borbehr-dev"
+
+  notice:
+    title: "Все Telegram-каналы удалены."
+    text: "Связь — только @venbehr."
+```
+
+### Алерты
+
+Закрываемые объявления вверху сайта:
 
 ```yaml
 alerts:
   1:
-    text: "Вышел новый проект! Обязательно посмотрите!"
-    link: "https://borbehr-vibebio.pages.dev"
+    text: "Вышел новый проект!"
+    link: "https://github.com/borbehr-dev/vibe-bio"
   2:
-    text: "Просто текстовый алерт без ссылки"
+    text: "Демо vibe-bio"
+    link: "https://borbehr-vibebio.pages.dev"
 ```
 
-Ключ (`1`, `2`, ...) — это id баннера. Когда посетитель закрывает баннер (кнопка ×),
-`static/alerts.js` запоминает id в `localStorage`, и при следующем визите этот
-баннер уже не покажется. Новый алерт — новый ключ — снова покажется всем.
+Ключ (`1`, `2`, ...) — стабильный id баннера. При закрытии id сохраняется в
+`localStorage` под ключом `borbehr_dismissed_alerts`, поэтому баннер не появляется
+снова у этого посетителя. Новый алерт — новый ключ.
 
-## Деплой
+### Проекты
 
-GitHub Actions (`.github/workflows/deploy.yml`) теперь ставит Node.js,
-`npm ci`, `npm run build`, и деплоит `dist/` на GitHub Pages.
+По умолчанию `projects: []`, и во время сборки сайт запрашивает публичные
+репозитории GitHub:
+
+- запрос идёт на GitHub API с таймаутом 5 секунд;
+- форки и архивные репозитории исключаются;
+- если GitHub недоступен или отвечает ошибкой, используется встроенный снимок
+  реальных проектов из `src/lib/projects.js`;
+- описания, категории и ссылки на демо для известных репозиториев хранятся там же.
+
+Чтобы задать список вручную, заполните `projects` в `config.yaml`:
+
+```yaml
+projects:
+  - title: "Мой проект"
+    description: "Короткое описание"
+    url: "https://github.com/borbehr-dev/example"
+    homepage: "https://example.pages.dev"
+    language: "TypeScript"
+    category: "Web app"
+    topics: ["web", "tool"]
+    updatedAt: "2026-01-01"
+```
+
+Если список непустой, GitHub API не используется.
+
+### Аудио
+
+1. Скопируйте файл в `public/audio/`.
+2. Поддерживаются `mp3`, `ogg`, `wav`, `m4a`, `flac`.
+3. При сборке длительность читается автоматически через `music-metadata`.
+4. Название и slug можно задать в `src/lib/tracks.js` в объекте `TRACK_META`.
+   Без записи в `TRACK_META` название берётся из имени файла.
+5. Избранные треки для главной задаются там же в `FEATURED`.
+
+Страница `/audio/` получает данные на этапе сборки: в HTML встраивается JSON,
+а `audio.js` создаёт плеер. Поддерживаются play/pause, предыдущий/следующий трек,
+перемотка, громкость, mute, shuffle, повтор всех/одного трека, скачивание,
+поиск по архиву, клавиши `Space`, `←`, `→`, `M`, `N`, `P`, Media Session API и
+запоминание последнего трека.
+
+## Дизайн и возможности
+
+- Тёмная тема по умолчанию, лаймовый акцент и оранжевые служебные маркеры.
+- Шрифты Unbounded, Manrope и JetBrains Mono — self-hosted WOFF2.
+- Адаптивная сетка: мобильное меню, перестройка плеера, карточек и футера.
+- Sticky-header с индикатором прокрутки, reveal-анимации, hover-состояния.
+- Аудиоплеер с доступными контролами, live-region для скринридеров и клавиатурой.
+- Фильтр проектов по категории + поиск по названию, языку и темам.
+- Поиск по трекам с пустым состоянием.
+- SEO: canonical, Open Graph, Twitter Card, JSON-LD, `sitemap.xml`, `robots.txt`.
+- Favicon SVG/PNG, Apple Touch Icon, web manifest, OG-картинка 1200×630.
+- `prefers-reduced-motion`, skip-link, focus-visible, ARIA-атрибуты.
+- Никаких сторонних скриптов, cookie, аналитики и запросов к CDN.
+
+## Ассеты
+
+`npm run assets:generate` создаёт из `public/favicon.svg`:
+
+- `public/favicon-32.png`
+- `public/favicon-192.png`
+- `public/apple-touch-icon.png`
+- `public/og.png` — социальная карточка 1200×630
+
+Сгенерированные файлы уже лежат в репозитории, поэтому для обычной сборки
+запускать эту команду не нужно. Она нужна только после изменения иконки или
+дизайна OG-карточки.
+
+## Сборка и деплой
+
+Production-сборка:
+
+```bash
+npm ci
+npm run build
+```
+
+Результат — каталог `dist/`.
+
+### Cloudflare Pages
+
+Основной хостинг проекта. Настройки уже заданы в панели Cloudflare:
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Node.js version: `20`
+
+Backend, база данных и переменные окружения не требуются. Домен `borbehr.eu.org`
+привязан к проекту Cloudflare Pages, поэтому `CNAME` в репозитории не нужен.
+
+### GitHub Pages (резерв)
+
+Workflow `.github/workflows/deploy.yml` устанавливает Node.js, выполняет
+`npm ci` и `npm run build`, затем публикует `dist/`. Это резервный вариант
+публикации — основной сайт живёт на Cloudflare Pages. При необходимости
+домен для GitHub Pages настраивается в настройках репозитория, а не через
+файл `CNAME`.
+
+## Проверки
+
+```bash
+npm run build        # production-сборка
+npm run preview      # локальная проверка dist/
+npm audit            # зависимостей с известными уязвимостями нет
+```

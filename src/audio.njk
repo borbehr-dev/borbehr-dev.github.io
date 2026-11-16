@@ -1,0 +1,162 @@
+---
+layout: base.njk
+pageKey: audio
+title: "Звук — borBeHR"
+description: "Архив треков borBeHR: восемь работ, полный веб-плеер, перемотка, повтор, случайный порядок и скачивание."
+ogType: "website"
+---
+{% import "components/icons.njk" as icons %}
+{% import "components/ui.njk" as ui %}
+{% set first = tracks.items[0] %}
+
+<section class="page-hero audio-hero">
+  <div class="page-hero__backdrop" aria-hidden="true"></div>
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Звук</span>
+    </nav>
+
+    <div class="audio-hero__heading">
+      <div data-reveal>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> audio archive / {{ tracks.countLabel }} tracks</p>
+        <h1 class="page-title">Звук<span class="page-title__accent">.</span></h1>
+      </div>
+      <p class="page-lead" data-reveal>Треки, записанные без дедлайнов и&nbsp;чужих ожиданий. Включайте громче — остальное подождёт.</p>
+
+      <dl class="page-stats" data-reveal>
+        <div><dt>Треков</dt><dd>{{ tracks.countLabel }}</dd></div>
+        <div><dt>Общая длина</dt><dd>{{ tracks.totalDurationLabel }}</dd></div>
+        <div><dt>Формат</dt><dd>MP3</dd></div>
+      </dl>
+    </div>
+
+    <section class="player" data-player aria-label="Аудиоплеер" data-reveal>
+      <div class="player__art" data-player-art style="--track-hue: {{ first.hue }}; --track-hue-2: {{ first.hue2 }};">
+        <span class="player__art-grid" aria-hidden="true"></span>
+        <span class="player__art-number" data-player-number>{{ first.numberLabel }}</span>
+        <span class="player__art-ring" aria-hidden="true"></span>
+        <span class="player__art-title" data-player-art-title>{{ first.title }}</span>
+        <span class="player__art-state" data-player-state>standby</span>
+      </div>
+
+      <div class="player__body">
+        <div class="player__topline">
+          <span class="mono-label">now playing</span>
+          <span class="player__counter" data-player-counter>{{ first.numberLabel }} / {{ tracks.countLabel }}</span>
+        </div>
+
+        <div class="player__now">
+          <h2 class="player__title" data-player-title>{{ first.title }}</h2>
+          <p class="player__meta" data-player-meta>borBeHR <span aria-hidden="true">·</span> audio archive</p>
+        </div>
+
+        <div class="player__timeline">
+          <span class="player__time" data-player-current>0:00</span>
+          <input class="range range--seek" type="range" min="0" max="100" value="0" step="0.1" data-player-seek aria-label="Позиция воспроизведения" />
+          <span class="player__time" data-player-duration>{{ first.durationLabel }}</span>
+        </div>
+
+        <div class="player__controls">
+          <div class="player__control-group">
+            <button class="icon-button icon-button--control" type="button" data-player-shuffle aria-pressed="false" aria-label="Случайный порядок" title="Случайный порядок">
+              {{ icons.icon('shuffle', 18) }}
+            </button>
+            <button class="icon-button icon-button--control" type="button" data-player-prev aria-label="Предыдущий трек" title="Предыдущий трек">
+              {{ icons.icon('prev', 19) }}
+            </button>
+            <button class="player__play" type="button" data-player-toggle aria-label="Воспроизвести" title="Воспроизвести">
+              <span class="player__play-icon player__play-icon--play">{{ icons.icon('play', 24) }}</span>
+              <span class="player__play-icon player__play-icon--pause">{{ icons.icon('pause', 24) }}</span>
+            </button>
+            <button class="icon-button icon-button--control" type="button" data-player-next aria-label="Следующий трек" title="Следующий трек">
+              {{ icons.icon('next', 19) }}
+            </button>
+            <button class="icon-button icon-button--control" type="button" data-player-repeat aria-label="Повтор: выключен" title="Повтор: выключен" aria-pressed="false">
+              <span data-repeat-icon>{{ icons.icon('repeat', 18) }}</span>
+            </button>
+          </div>
+
+          <div class="player__secondary">
+            <button class="icon-button icon-button--control" type="button" data-player-mute aria-label="Выключить звук" title="Выключить звук">
+              <span data-volume-icon>{{ icons.icon('volume', 18) }}</span>
+            </button>
+            <input class="range range--volume" type="range" min="0" max="1" value="0.85" step="0.01" data-player-volume aria-label="Громкость" />
+            <a class="icon-button icon-button--control" href="{{ first.src }}" download="{{ first.file }}" data-player-download aria-label="Скачать текущий трек" title="Скачать текущий трек">
+              {{ icons.icon('download', 18) }}
+            </a>
+          </div>
+        </div>
+
+        <p class="player__hint">
+          <kbd>Space</kbd> play / pause
+          <span aria-hidden="true">·</span>
+          <kbd>←</kbd><kbd>→</kbd> перемотка
+          <span aria-hidden="true">·</span>
+          <kbd>M</kbd> звук
+        </p>
+      </div>
+    </section>
+
+    <p class="sr-only" aria-live="polite" data-player-announcer></p>
+  </div>
+</section>
+
+<section class="section section--tracklist">
+  <div class="container">
+    <div class="tracklist-head" data-reveal>
+      <div>
+        <p class="eyebrow">Полный архив</p>
+        <h2 class="section-title">Все треки</h2>
+      </div>
+      <div class="tracklist-tools">
+        <div class="search-field">
+          <label class="sr-only" for="track-search">Найти трек</label>
+          {{ icons.icon('search', 17) }}
+          <input id="track-search" type="search" placeholder="Найти трек" autocomplete="off" data-track-filter />
+          <button class="search-field__clear" type="button" data-track-clear aria-label="Очистить поиск" hidden>
+            {{ icons.icon('close', 14) }}
+          </button>
+        </div>
+        <span class="tracklist-count" data-track-count>{{ tracks.countLabel }} / {{ tracks.countLabel }}</span>
+      </div>
+    </div>
+
+    <ol class="track-list" data-track-list>
+      {% for track in tracks.items %}
+        <li class="track-row{% if loop.first %} is-active{% endif %}" data-track-row data-index="{{ loop.index0 }}" data-search="{{ track.title | lower }} {{ track.slug }}" data-reveal>
+          <button class="track-row__main" type="button" data-track-play aria-label="Воспроизвести «{{ track.title }}»">
+            <span class="track-row__number">
+              <span class="track-row__index">{{ track.numberLabel }}</span>
+              <span class="track-row__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="track-row__cover" style="--track-hue: {{ track.hue }}; --track-hue-2: {{ track.hue2 }};" aria-hidden="true"><i></i></span>
+            <span class="track-row__body">
+              <span class="track-row__title">{{ track.title }}</span>
+              <span class="track-row__meta">borBeHR / archive</span>
+            </span>
+          </button>
+          <span class="track-row__duration">{{ track.durationLabel }}</span>
+          <a class="track-row__download" href="{{ track.src }}" download="{{ track.file }}" aria-label="Скачать трек «{{ track.title }}»" title="Скачать">
+            {{ icons.icon('download', 16) }}
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+
+    <p class="tracklist-empty" data-track-empty hidden>Ничего не нашлось. Попробуйте другое слово.</p>
+
+    <div class="tracklist-foot" data-reveal>
+      <span class="mono-label">{{ tracks.countLabel }} tracks · {{ tracks.totalDurationLabel }}</span>
+      <span class="tracklist-foot__note">Файлы доступны для скачивания. Пожалуйста, указывайте автора при публикации.</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  {{ ui.contactCta(site) }}
+</div>
+
+<script type="application/json" id="tracks-data">{{ tracks.items | jsonld | safe }}</script>
+<script type="module" src="/assets/js/audio.js"></script>

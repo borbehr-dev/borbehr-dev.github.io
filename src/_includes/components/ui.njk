@@ -1,0 +1,120 @@
+{% import "./icons.njk" as icons %}
+
+{% macro cover(track, size = 'md', bars = 20) %}
+  <span class="cover cover--{{ size }}" style="--track-hue: {{ track.hue }}; --track-hue-2: {{ track.hue2 }};" aria-hidden="true">
+    <span class="cover__grid"></span>
+    <span class="cover__index">{{ track.numberLabel }}</span>
+    <span class="cover__bars">
+      {% for height in track.bars %}
+        {% if loop.index <= bars %}<i style="--bar-h: {{ height }}%"></i>{% endif %}
+      {% endfor %}
+    </span>
+    <span class="cover__disc"></span>
+    <span class="cover__label">{{ track.title }}</span>
+  </span>
+{% endmacro %}
+
+{% macro featuredTrack(track) %}
+  <a class="track-teaser" href="/audio/?track={{ track.slug | urlencode }}" aria-label="Открыть трек «{{ track.title }}» в плеере">
+    <span class="track-teaser__index">{{ track.numberLabel }}</span>
+    {{ cover(track, 'sm', 14) }}
+    <span class="track-teaser__body">
+      <span class="track-teaser__title">{{ track.title }}</span>
+      <span class="track-teaser__meta">borBeHR <span aria-hidden="true">·</span> {{ track.durationLabel }}</span>
+    </span>
+    <span class="track-teaser__action" aria-hidden="true">{{ icons.icon('play', 16) }}</span>
+  </a>
+{% endmacro %}
+
+{% macro projectCard(project, index) %}
+  <article class="project-card{% if project.featured %} project-card--featured{% endif %}" data-project-card data-category="{{ project.category | lower }}" data-language="{{ project.language | lower }}" data-search="{{ project.title | lower }} {{ project.description | lower }} {{ project.category | lower }} {{ project.language | lower }} {{ project.topics | join(' ') | lower }}">
+    <div class="project-card__top">
+      <span class="project-card__index">{{ (index + 1) | number }}</span>
+      {% if project.featured %}<span class="pill pill--lime">Избранное</span>{% endif %}
+      <span class="project-card__category">{{ project.category }}</span>
+    </div>
+    <h3 class="project-card__title">
+      <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+    </h3>
+    <p class="project-card__description">{{ project.description }}</p>
+    <div class="project-card__meta">
+      {% if project.language and project.language != 'Code' %}<span class="tag">{{ project.language }}</span>{% endif %}
+      {% if project.updatedAt %}<span class="tag tag--muted">обновлён {{ project.updatedAt | dateRu }}</span>{% endif %}
+    </div>
+    <div class="project-card__links">
+      <a class="text-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
+        <span>Репозиторий</span>
+        {{ icons.icon('arrow-up-right', 15) }}
+      </a>
+      {% if project.homepage %}
+        <a class="text-link text-link--muted" href="{{ project.homepage }}" target="_blank" rel="noopener noreferrer">
+          <span>Демо</span>
+          {{ icons.icon('external', 14) }}
+        </a>
+      {% endif %}
+    </div>
+  </article>
+{% endmacro %}
+
+{% macro sectionHead(number, label, title, accent = '', href = '', linkLabel = '') %}
+  <header class="section-head" data-reveal>
+    <div class="section-head__index">
+      <span>{{ number }}</span>
+      <span class="section-head__line" aria-hidden="true"></span>
+      <span class="section-head__label">{{ label }}</span>
+    </div>
+    <div class="section-head__main">
+      <h2>{{ title }}{% if accent %} <em>{{ accent }}</em>{% endif %}</h2>
+      {% if href %}
+        <a class="section-head__link" href="{{ href }}">
+          <span>{{ linkLabel }}</span>
+          {{ icons.icon('arrow-right', 18) }}
+        </a>
+      {% endif %}
+    </div>
+  </header>
+{% endmacro %}
+
+{% macro contactCta(site) %}
+  <section class="contact-cta" data-reveal>
+    <div class="contact-cta__glow" aria-hidden="true"></div>
+    <div class="contact-cta__content">
+      <p class="eyebrow"><span class="status-dot"></span> Открыт к диалогу</p>
+      <h2>Есть идея,<br />вопрос или трек?</h2>
+      <p class="contact-cta__text">Напишите напрямую в Telegram. Без форм, менеджеров и ожидания.</p>
+    </div>
+    <div class="contact-cta__action">
+      <a class="button button--lime button--large" href="{{ site.telegramLink }}" target="_blank" rel="noopener noreferrer">
+        <span>{{ site.telegramHandle }}</span>
+        {{ icons.icon('telegram', 20) }}
+      </a>
+      <a class="text-link text-link--muted" href="{{ site.githubUrl }}" target="_blank" rel="noopener noreferrer">
+        <span>или GitHub</span>
+        {{ icons.icon('arrow-up-right', 14) }}
+      </a>
+    </div>
+  </section>
+{% endmacro %}
+
+{% macro alertRail(alerts) %}
+  {% if alerts.length %}
+    <aside class="alert-rail" aria-label="Объявления" data-alert-rail>
+      <div class="container alert-rail__inner">
+        {% for alert in alerts %}
+          <div class="alert-item" data-alert-id="{{ alert.id }}">
+            <span class="alert-item__dot" aria-hidden="true"></span>
+            <span class="alert-item__text">{{ alert.text }}</span>
+            {% if alert.link %}
+              <a class="alert-item__link" href="{{ alert.link }}" target="_blank" rel="noopener noreferrer">
+                Перейти {{ icons.icon('arrow-up-right', 13) }}
+              </a>
+            {% endif %}
+            <button class="alert-item__close" type="button" data-alert-close aria-label="Закрыть объявление «{{ alert.text }}»">
+              {{ icons.icon('close', 15) }}
+            </button>
+          </div>
+        {% endfor %}
+      </div>
+    </aside>
+  {% endif %}
+{% endmacro %}

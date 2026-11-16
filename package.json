@@ -1,16 +1,26 @@
 {
-  "name": "borbehr-portfolio",
-  "version": "1.0.0",
-  "description": "Статический генератор сайта borbehr.eu.org (Node.js version, единый config.yaml)",
+  "name": "borbehr-site",
+  "version": "2.0.0",
+  "description": "borBeHR — independent audio, code and experiments. Static site for borbehr.eu.org.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "build": "node generate.js",
-    "serve": "node serve.js",
-    "start": "npm run build && npm run serve"
+    "dev": "eleventy --serve --port=4321",
+    "clean": "node scripts/clean.mjs",
+    "build": "node scripts/clean.mjs && eleventy",
+    "preview": "node scripts/serve.mjs",
+    "start": "eleventy --serve --port=4321",
+    "assets:generate": "node scripts/generate-assets.mjs"
   },
   "dependencies": {
-    "ejs": "^3.1.10",
-    "js-yaml": "^4.1.0"
+    "@11ty/eleventy": "^3.1.8",
+    "js-yaml": "^4.1.0",
+    "music-metadata": "^11.16.1"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
   }
 }

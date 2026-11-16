@@ -1,0 +1,94 @@
+---
+layout: base.njk
+pageKey: projects
+title: "Проекты — borBeHR"
+description: "Открытые проекты borBeHR: веб-приложения, игры, инструменты и эксперименты с кодом. Репозитории и живые демо."
+permalink: /projects/
+---
+{% import "components/icons.njk" as icons %}
+{% import "components/ui.njk" as ui %}
+
+<section class="page-hero projects-hero">
+  <div class="page-hero__backdrop" aria-hidden="true"></div>
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Проекты</span>
+    </nav>
+
+    <div class="projects-hero__heading">
+      <div data-reveal>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> open source / side quests</p>
+        <h1 class="page-title">Проекты<span class="page-title__accent">.</span></h1>
+      </div>
+      <p class="page-lead" data-reveal>Код, который появился из любопытства. Игры, инструменты, веб-эксперименты и&nbsp;иногда что-то полезное.</p>
+
+      <dl class="page-stats" data-reveal>
+        <div><dt>Публичных</dt><dd>{{ projects.countLabel }}</dd></div>
+        <div><dt>Направлений</dt><dd>{{ projects.categories | length | number }}</dd></div>
+        <div><dt>Лицензия</dt><dd>Open</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section section--projects-list">
+  <div class="container">
+    <div class="filter-bar" data-reveal>
+      <div class="filter-chips" role="group" aria-label="Фильтр по направлению">
+        <button class="filter-chip is-active" type="button" data-filter-category="all" aria-pressed="true">Все <span>{{ projects.countLabel }}</span></button>
+        {% for category in projects.categoriesDetailed %}
+          <button class="filter-chip" type="button" data-filter-category="{{ category.name | lower }}" aria-pressed="false">{{ category.name }} <span>{{ category.count | number }}</span></button>
+        {% endfor %}
+      </div>
+
+      <div class="search-field search-field--projects">
+        <label class="sr-only" for="project-search">Найти проект</label>
+        {{ icons.icon('search', 17) }}
+        <input id="project-search" type="search" placeholder="Название, язык, тема" autocomplete="off" data-project-search />
+        <button class="search-field__clear" type="button" data-project-clear aria-label="Очистить поиск" hidden>
+          {{ icons.icon('close', 14) }}
+        </button>
+      </div>
+    </div>
+
+    <div class="project-list-head">
+      <p class="mono-label" data-project-count>Показано {{ projects.countLabel }} из {{ projects.countLabel }}</p>
+      <p class="project-list-head__source">
+        <span class="status-dot status-dot--small" aria-hidden="true"></span>
+        {% if projects.source === 'github' %}Данные GitHub обновлены при сборке{% elif projects.source === 'manual' %}Список задан вручную{% else %}Локальный снимок GitHub{% endif %}
+      </p>
+    </div>
+
+    <div class="project-grid project-grid--all" data-project-grid>
+      {% for project in projects.items %}
+        {{ ui.projectCard(project, loop.index0) }}
+      {% endfor %}
+    </div>
+
+    <div class="empty-state" data-project-empty hidden>
+      <span class="empty-state__mark" aria-hidden="true">404</span>
+      <h2>Ничего не нашлось</h2>
+      <p>Попробуйте изменить запрос или сбросить фильтр.</p>
+      <button class="button button--ghost" type="button" data-project-reset>Сбросить фильтры</button>
+    </div>
+
+    <div class="project-cta" data-reveal>
+      <div>
+        <p class="eyebrow">Полный список</p>
+        <h2>Остальное — на GitHub.</h2>
+      </div>
+      <a class="button button--lime" href="{{ site.githubUrl }}" target="_blank" rel="noopener noreferrer">
+        <span>github.com/{{ site.githubUser }}</span>
+        {{ icons.icon('arrow-up-right', 17) }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  {{ ui.contactCta(site) }}
+</div>
+
+<script type="module" src="/assets/js/projects.js"></script>

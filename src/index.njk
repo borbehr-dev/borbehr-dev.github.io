@@ -1,0 +1,211 @@
+---
+layout: base.njk
+pageKey: home
+title: "borBeHR — независимый звук, код и эксперименты"
+description: "borBeHR — независимый проект на стыке музыки, веба и цифровых экспериментов. Восемь треков, открытые проекты и прямой контакт в Telegram."
+---
+{% import "components/icons.njk" as icons %}
+{% import "components/ui.njk" as ui %}
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__backdrop" aria-hidden="true">
+    <span class="hero__grid"></span>
+    <span class="hero__glow"></span>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <p class="hero__eyebrow" data-reveal>
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>independent audio / code / experiments</span>
+      </p>
+
+      <h1 class="hero__title" id="hero-title" data-reveal>
+        <span>bor</span><span class="hero__title-accent">Be</span><span>HR</span><span class="hero__asterisk" aria-hidden="true">*</span>
+      </h1>
+
+      <p class="hero__lead" data-reveal>
+        Независимый проект на стыке <em>звука</em>, <em>кода</em> и&nbsp;цифровых экспериментов. Без посредников и лишнего шума.
+      </p>
+
+      <aside class="notice-card" data-reveal aria-label="Уведомление">
+        <span class="notice-card__number" aria-hidden="true">N/01</span>
+        <div>
+          <p class="notice-card__title">{{ site.notice.title }}</p>
+          <p class="notice-card__text">{{ site.notice.text }} <a href="{{ site.telegramLink }}" target="_blank" rel="noopener noreferrer">{{ site.telegramHandle }} {{ icons.icon('arrow-up-right', 13) }}</a></p>
+        </div>
+      </aside>
+
+      <div class="hero__actions" data-reveal>
+        <a class="button button--lime button--large" href="/audio/">
+          <span>Слушать звук</span>
+          {{ icons.icon('headphones', 19) }}
+        </a>
+        <a class="button button--ghost button--large" href="/projects/">
+          <span>Смотреть проекты</span>
+          {{ icons.icon('arrow-right', 18) }}
+        </a>
+      </div>
+
+      <dl class="hero__stats" data-reveal>
+        <div><dt>Треки</dt><dd>{{ tracks.countLabel }}</dd></div>
+        <div><dt>Проекты</dt><dd>{{ projects.countLabel }}</dd></div>
+        <div><dt>Трекеры</dt><dd>00</dd></div>
+      </dl>
+    </div>
+
+    <div class="hero__visual" data-reveal>
+      <div class="signal-panel">
+        <span class="signal-panel__corner signal-panel__corner--tl" aria-hidden="true"></span>
+        <span class="signal-panel__corner signal-panel__corner--tr" aria-hidden="true"></span>
+        <span class="signal-panel__corner signal-panel__corner--bl" aria-hidden="true"></span>
+        <span class="signal-panel__corner signal-panel__corner--br" aria-hidden="true"></span>
+
+        <div class="signal-panel__top">
+          <span class="mono-label">transmission 001</span>
+          <span class="signal-panel__live"><i aria-hidden="true"></i> online</span>
+        </div>
+
+        <div class="signal-orbit" aria-hidden="true">
+          <svg class="signal-orbit__rings" viewBox="0 0 420 420" fill="none">
+            <circle cx="210" cy="210" r="196" stroke="currentColor" stroke-opacity=".08"/>
+            <circle cx="210" cy="210" r="166" stroke="currentColor" stroke-opacity=".12" stroke-dasharray="1 9"/>
+            <circle cx="210" cy="210" r="128" stroke="currentColor" stroke-opacity=".14"/>
+            <path d="M210 6v26M210 388v26M6 210h26M388 210h26" stroke="currentColor" stroke-opacity=".28"/>
+          </svg>
+
+          <svg class="signal-orbit__text" viewBox="0 0 420 420" fill="none">
+            <defs>
+              <path id="signal-circle" d="M210,60 a150,150 0 1,1 -0.1,0" />
+            </defs>
+            <text>
+              <textPath href="#signal-circle" startOffset="0%">sound · code · experiments · independent · sound · code · experiments ·</textPath>
+            </text>
+          </svg>
+
+          <div class="signal-orbit__core">
+            <span class="signal-orbit__eyebrow">archive</span>
+            <strong>{{ tracks.countLabel }}</strong>
+            <span class="signal-orbit__caption">tracks in orbit</span>
+            <span class="signal-orbit__bars" aria-hidden="true">
+              {% for height in tracks.items[0].bars %}<i style="--bar-h: {{ height }}%; --i: {{ loop.index }}"></i>{% endfor %}
+            </span>
+          </div>
+
+          <span class="signal-orbit__satellite signal-orbit__satellite--one"></span>
+          <span class="signal-orbit__satellite signal-orbit__satellite--two"></span>
+        </div>
+
+        <div class="signal-panel__bottom">
+          <div class="signal-panel__caption">
+            <span class="mono-label">now playing</span>
+            <span class="signal-panel__track">{{ tracks.featured[0].title }}</span>
+          </div>
+          <div class="signal-panel__mini-wave" aria-hidden="true">
+            {% for height in tracks.featured[0].bars %}{% if loop.index <= 18 %}<i style="--bar-h: {{ height }}%"></i>{% endif %}{% endfor %}
+          </div>
+          <a class="icon-button icon-button--lime" href="/audio/?track={{ tracks.featured[0].slug | urlencode }}" aria-label="Открыть плеер">
+            {{ icons.icon('play', 15) }}
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__chips" aria-hidden="true">
+        <span class="chip"><span class="chip__dot"></span> audio / {{ tracks.countLabel }}</span>
+        <span class="chip"><span class="chip__dot"></span> code / {{ projects.countLabel }}</span>
+        <span class="chip chip--muted">borbehr.eu.org</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container hero__scroll">
+    <a href="#selected-audio" class="scroll-cue">
+      <span>Листать</span>
+      <span class="scroll-cue__line" aria-hidden="true"></span>
+    </a>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {% for copy in [1, 2] %}
+      <span class="marquee__group">
+        <span>звук</span>{{ icons.icon('spark', 14) }}
+        <span>код</span>{{ icons.icon('spark', 14) }}
+        <span>эксперименты</span>{{ icons.icon('spark', 14) }}
+        <span>без посредников</span>{{ icons.icon('spark', 14) }}
+        <span>сделано вручную</span>{{ icons.icon('spark', 14) }}
+      </span>
+    {% endfor %}
+  </div>
+</div>
+
+<section class="section" id="selected-audio">
+  <div class="container">
+    {{ ui.sectionHead('01', 'Аудио', 'Избранные', 'сигналы', '/audio/', 'Все треки') }}
+
+    <div class="featured-audio">
+      <div class="featured-audio__list">
+        {% for track in tracks.featured %}
+          {{ ui.featuredTrack(track) }}
+        {% endfor %}
+      </div>
+
+      <aside class="audio-card" data-reveal aria-label="Аудиоархив">
+        <div class="audio-card__top">
+          {{ icons.icon('disc', 28) }}
+          <span class="mono-label">audio archive</span>
+        </div>
+        <p class="audio-card__count">{{ tracks.countLabel }}</p>
+        <p class="audio-card__label">треков в архиве</p>
+        <p class="audio-card__text">Полный плеер с очередью, перемоткой, повтором и скачиванием. Общая длительность архива — {{ tracks.totalDurationLabel }}.</p>
+        <a class="button button--ghost" href="/audio/">
+          <span>Открыть плеер</span>
+          {{ icons.icon('arrow-right', 17) }}
+        </a>
+        <div class="audio-card__equalizer" aria-hidden="true">
+          {% for height in tracks.items[0].bars %}{% if loop.index <= 28 %}<i style="--bar-h: {{ height }}%; --i: {{ loop.index }}"></i>{% endif %}{% endfor %}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section section--projects">
+  <div class="container">
+    {{ ui.sectionHead('02', 'Проекты', 'Код и', 'эксперименты', '/projects/', 'Все проекты') }}
+
+    <div class="project-grid project-grid--featured">
+      {% for project in projects.featured | limit(4) %}
+        {{ ui.projectCard(project, loop.index0) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="container manifesto__inner">
+    <div class="manifesto__aside" data-reveal>
+      <span class="section-head__index"><span>03</span><span class="section-head__line" aria-hidden="true"></span><span class="section-head__label">Манифест</span></span>
+      <a class="text-link" href="/about/">
+        <span>О проекте</span>
+        {{ icons.icon('arrow-right', 15) }}
+      </a>
+    </div>
+
+    <blockquote class="manifesto__quote" data-reveal>
+      <span class="manifesto__quote-mark" aria-hidden="true">“</span>
+      Делать то, что хочется <em>слушать</em> и&nbsp;чем хочется <em>пользоваться</em>.<br />Остальное — шум.
+    </blockquote>
+
+    <div class="manifesto__footer" data-reveal>
+      <span class="mono-label">borBeHR / manifesto</span>
+      <span class="manifesto__line" aria-hidden="true"></span>
+      <span class="mono-label">since always</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  {{ ui.contactCta(site) }}
+</div>

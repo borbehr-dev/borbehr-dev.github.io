@@ -1,0 +1,34 @@
+---
+layout: base.njk
+pageKey: notfound
+title: "404 — сигнал потерян"
+description: "Страница не найдена. Вернитесь на главную borBeHR или откройте архив треков."
+permalink: /404.html
+noindex: true
+---
+{% import "components/icons.njk" as icons %}
+{% import "components/ui.njk" as ui %}
+
+<section class="notfound">
+  <div class="notfound__backdrop" aria-hidden="true"></div>
+  <div class="container notfound__inner">
+    <p class="eyebrow" data-reveal><span class="status-dot status-dot--alert" aria-hidden="true"></span> signal lost / 404</p>
+    <h1 class="notfound__title" data-reveal>404<span aria-hidden="true">*</span></h1>
+    <p class="notfound__lead" data-reveal>Этой страницы больше нет — или она никогда не существовала. Сигнал не найден, но архив на месте.</p>
+    <div class="notfound__actions" data-reveal>
+      <a class="button button--lime button--large" href="/">
+        <span>На главную</span>
+        {{ icons.icon('arrow-left', 18) }}
+      </a>
+      <a class="button button--ghost button--large" href="/audio/">
+        <span>В архив звука</span>
+        {{ icons.icon('headphones', 18) }}
+      </a>
+    </div>
+    <div class="notfound__nav" data-reveal>
+      {% for item in site.nav %}
+        <a href="{{ item.href }}">{{ item.label }} {{ icons.icon('arrow-up-right', 13) }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

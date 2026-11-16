@@ -1,0 +1,13 @@
+{% macro logo(href = '/', label = 'borBeHR — на главную') %}
+  <a class="brand" href="{{ href }}" aria-label="{{ label }}">
+    <span class="brand__mark" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none">
+        <rect x="1" y="1" width="38" height="38" rx="12" stroke="currentColor" stroke-opacity=".24"/>
+        <circle cx="20" cy="20" r="10.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2.5 3"/>
+        <circle cx="20" cy="20" r="3.2" fill="currentColor"/>
+        <path d="M20 3v5M20 32v5M3 20h5M32 20h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="brand__word">bor<span class="brand__accent">Be</span>HR</span>
+  </a>
+{% endmacro %}

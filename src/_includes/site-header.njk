@@ -1,0 +1,78 @@
+{% import "components/icons.njk" as icons %}
+{% import "components/brand.njk" as brand %}
+
+<header class="site-header" data-site-header>
+  <div class="container site-header__inner">
+    {{ brand.logo() }}
+
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      {% for item in site.nav %}
+        <a href="{{ item.href }}"{% if pageKey === item.key %} class="is-active" aria-current="page"{% endif %}>
+          <span>{{ item.label }}</span>
+        </a>
+      {% endfor %}
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="icon-button icon-button--ghost" href="{{ site.githubUrl }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub borbehr-dev">
+        {{ icons.icon('github', 18) }}
+      </a>
+      <a class="button button--small button--lime header-cta" href="{{ site.telegramLink }}" target="_blank" rel="noopener noreferrer">
+        <span>Telegram</span>
+        {{ icons.icon('arrow-up-right', 15) }}
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
+        <span class="sr-only">Открыть меню</span>
+        <span class="menu-toggle__icon" aria-hidden="true">
+          <span></span><span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <span class="site-header__progress" data-scroll-progress aria-hidden="true"></span>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true" inert>
+  <div class="mobile-menu__backdrop" data-menu-close aria-hidden="true"></div>
+  <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Меню сайта">
+    <div class="mobile-menu__top">
+      <span class="eyebrow">Навигация</span>
+      <button class="icon-button" type="button" data-menu-close aria-label="Закрыть меню">
+        {{ icons.icon('close', 20) }}
+      </button>
+    </div>
+
+    <nav class="mobile-nav" aria-label="Мобильная навигация">
+      {% for item in site.nav %}
+        <a href="{{ item.href }}"{% if pageKey === item.key %} class="is-active" aria-current="page"{% endif %} data-menu-link>
+          <span class="mobile-nav__index">{{ loop.index | number }}</span>
+          <span class="mobile-nav__label">{{ item.label }}</span>
+          {{ icons.icon('arrow-up-right', 20) }}
+        </a>
+      {% endfor %}
+    </nav>
+
+    <div class="mobile-menu__contact">
+      <p class="eyebrow">Связь</p>
+      <a class="mobile-menu__telegram" href="{{ site.telegramLink }}" target="_blank" rel="noopener noreferrer">
+        <span>{{ site.telegramHandle }}</span>
+        {{ icons.icon('telegram', 22) }}
+      </a>
+      <a class="text-link text-link--muted" href="{{ site.githubUrl }}" target="_blank" rel="noopener noreferrer">
+        <span>github.com/{{ site.githubUser }}</span>
+        {{ icons.icon('arrow-up-right', 14) }}
+      </a>
+    </div>
+
+    <p class="mobile-menu__note">{{ site.notice.title }} {{ site.notice.text }}</p>
+  </div>
+</div>
+
+<noscript>
+  <nav class="noscript-nav" aria-label="Навигация без JavaScript">
+    <div class="container">
+      {% for item in site.nav %}<a href="{{ item.href }}">{{ item.label }}</a>{% endfor %}
+      <a href="{{ site.telegramLink }}">Telegram</a>
+    </div>
+  </nav>
+</noscript>

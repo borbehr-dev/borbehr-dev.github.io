@@ -1,0 +1,130 @@
+---
+layout: base.njk
+pageKey: about
+title: "О проекте — borBeHR"
+description: "О borBeHR: независимый звук, код и цифровые эксперименты. Принципы проекта, техническая основа сайта и прямой контакт."
+permalink: /about/
+---
+{% import "components/icons.njk" as icons %}
+{% import "components/ui.njk" as ui %}
+
+<section class="page-hero about-hero">
+  <div class="page-hero__backdrop" aria-hidden="true"></div>
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">О проекте</span>
+    </nav>
+
+    <div class="about-hero__heading">
+      <div data-reveal>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> who / what / why</p>
+        <h1 class="page-title">О проекте<span class="page-title__accent">.</span></h1>
+      </div>
+      <p class="page-lead" data-reveal>borBeHR — это один человек, несколько инструментов и&nbsp;привычка доводить странные идеи до&nbsp;рабочего состояния.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section about-intro">
+  <div class="container about-intro__grid">
+    <div class="about-intro__copy" data-reveal>
+      <p class="about-intro__kicker">Независимый проект на стыке музыки и веба.</p>
+      <p>Здесь нет редакции, продюсерского центра и контент-плана. Есть треки, которые хочется слушать, и проекты, которые хочется проверить в деле.</p>
+      <p>Всё делается вручную: звук, интерфейсы, код, этот сайт. Что-то получается экспериментом, что-то — рабочим инструментом. Но всё проходит один фильтр: <em>этим хочется пользоваться самому.</em></p>
+      <a class="text-link" href="/projects/">
+        <span>Посмотреть проекты</span>
+        {{ icons.icon('arrow-right', 15) }}
+      </a>
+    </div>
+
+    <aside class="fact-card" data-reveal aria-label="Краткая информация">
+      <div class="fact-card__head">
+        <span class="mono-label">fact file</span>
+        <span class="fact-card__status"><i aria-hidden="true"></i> active</span>
+      </div>
+      <dl>
+        <div><dt>Имя</dt><dd>{{ site.name }}</dd></div>
+        <div><dt>Домен</dt><dd>borbehr.eu.org</dd></div>
+        <div><dt>Звук</dt><dd>{{ tracks.countLabel }} треков</dd></div>
+        <div><dt>Код</dt><dd>{{ projects.countLabel }} публичных проектов</dd></div>
+        <div><dt>Связь</dt><dd><a href="{{ site.telegramLink }}" target="_blank" rel="noopener noreferrer">{{ site.telegramHandle }}</a></dd></div>
+      </dl>
+      <div class="fact-card__footer">
+        <span>Все Telegram-каналы удалены.</span>
+        <span>Связь — только напрямую.</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section principles-section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div class="section-head__index">
+        <span>01</span>
+        <span class="section-head__line" aria-hidden="true"></span>
+        <span class="section-head__label">Принципы</span>
+      </div>
+      <div class="section-head__main">
+        <h2>Три правила, <em>которые работают</em></h2>
+      </div>
+    </div>
+
+    <div class="principle-grid">
+      <article class="principle-card" data-reveal>
+        <span class="principle-card__number">01</span>
+        {{ icons.icon('spark', 32) }}
+        <h3>Независимость</h3>
+        <p>Никаких обязательных платформ, алгоритмов и посредников. Прямая связь и собственные правила.</p>
+      </article>
+      <article class="principle-card" data-reveal>
+        <span class="principle-card__number">02</span>
+        {{ icons.icon('music', 32) }}
+        <h3>Ручная работа</h3>
+        <p>Треки, интерфейсы и тексты делаются вручную. Ошибки тоже свои — и это честнее шаблона.</p>
+      </article>
+      <article class="principle-card" data-reveal>
+        <span class="principle-card__number">03</span>
+        {{ icons.icon('code', 32) }}
+        <h3>Открытый код</h3>
+        <p>Проекты живут на GitHub. Можно посмотреть, как всё устроено, и забрать идею себе.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section site-note-section">
+  <div class="container">
+    <div class="site-note" data-reveal>
+      <div class="site-note__header">
+        <p class="eyebrow">02 / Этот сайт</p>
+        <h2>Быстрый, статический, без трекеров.</h2>
+      </div>
+      <div class="site-note__body">
+        <p>Сайт собирается в статические файлы и не требует backend. Никаких аналитических скриптов, внешних виджетов и обязательных сервисов — только HTML, CSS, немного JavaScript и аудио.</p>
+        <div class="site-note__tags">
+          <span class="tag">Eleventy</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">CSS</span>
+          <span class="tag">Vanilla JS</span>
+          <span class="tag">GitHub Pages</span>
+          <span class="tag">Cloudflare Pages</span>
+        </div>
+      </div>
+      <div class="site-note__aside">
+        <span class="mono-label">build</span>
+        <strong>{{ site.buildDateLabel }}</strong>
+        <a class="text-link text-link--muted" href="{{ site.githubUrl }}" target="_blank" rel="noopener noreferrer">
+          <span>Исходники</span>
+          {{ icons.icon('arrow-up-right', 14) }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  {{ ui.contactCta(site) }}
+</div>

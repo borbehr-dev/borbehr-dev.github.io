@@ -1,0 +1,48 @@
+{% import "components/icons.njk" as icons %}
+{% import "components/brand.njk" as brand %}
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__lead">
+        {{ brand.logo() }}
+        <p class="site-footer__statement">
+          Звук, код и цифровые эксперименты.<br />
+          Без посредников и лишнего шума.
+        </p>
+        <a class="site-footer__contact" href="{{ site.telegramLink }}" target="_blank" rel="noopener noreferrer">
+          <span>{{ site.telegramHandle }}</span>
+          {{ icons.icon('arrow-up-right', 18) }}
+        </a>
+      </div>
+
+      <div class="site-footer__nav">
+        <div class="site-footer__column">
+          <p class="eyebrow">Разделы</p>
+          {% for item in site.nav %}
+            <a href="{{ item.href }}">{{ item.label }}</a>
+          {% endfor %}
+        </div>
+        <div class="site-footer__column">
+          <p class="eyebrow">Ссылки</p>
+          <a href="{{ site.telegramLink }}" target="_blank" rel="noopener noreferrer">Telegram {{ icons.icon('arrow-up-right', 13) }}</a>
+          <a href="{{ site.githubUrl }}" target="_blank" rel="noopener noreferrer">GitHub {{ icons.icon('arrow-up-right', 13) }}</a>
+          <a href="/audio/">Все треки {{ icons.icon('arrow-right', 13) }}</a>
+        </div>
+        <div class="site-footer__column site-footer__column--wide">
+          <p class="eyebrow">Статус</p>
+          <p class="site-footer__notice">{{ site.notice.title }}<br /><span>{{ site.notice.text }}</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__wordmark" aria-hidden="true">bor<span>Be</span>HR</div>
+
+    <div class="site-footer__bottom">
+      <span>© {{ site.year }} borBeHR</span>
+      <span class="site-footer__dot" aria-hidden="true"></span>
+      <span>Статический сайт без трекеров</span>
+      <a class="site-footer__up" href="#top">Наверх {{ icons.icon('arrow-up-right', 13) }}</a>
+    </div>
+  </div>
+</footer>
